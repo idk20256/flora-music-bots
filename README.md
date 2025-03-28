@@ -10,13 +10,13 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/github/license/gabrielmaialva33/flora-music-bot?color=00b8d3?style=flat&logo=appveyor" alt="License" />
-  <img src="https://img.shields.io/github/languages/top/gabrielmaialva33/flora-music-bot?style=flat&logo=appveyor" alt="GitHub top language" >
-  <img src="https://img.shields.io/github/languages/count/gabrielmaialva33/flora-music-bot?style=flat&logo=appveyor" alt="GitHub language count" >
-  <img src="https://img.shields.io/github/repo-size/gabrielmaialva33/flora-music-bot?style=flat&logo=appveyor" alt="Repository size" >
-  <a href="https://github.com/gabrielmaialva33/flora-music-bot/commits/master">
+  <img src="[https://img.shields.io/github/license/gabrielmaialva33/flora-music-bot?color=00b8d3?style=flat&logo=appveyor](https://files.catbox.moe/8k9i2y.jpg)" alt="License" />
+  <img src="[https://img.shields.io/github/languages/top/gabrielmaialva33/flora-music-bot?style=flat&logo=appveyor](https://files.catbox.moe/8k9i2y.jpg)" alt="GitHub top language" >
+  <img src="[https://img.shields.io/github/languages/count/gabrielmaialva33/flora-music-bot?style=flat&logo=appveyor](https://files.catbox.moe/8k9i2y.jpg)" alt="GitHub language count" >
+  <img src="[https://img.shields.io/github/repo-size/gabrielmaialva33/flora-music-bot?style=flat&logo=appveyor](https://files.catbox.moe/8k9i2y.jpg)" alt="Repository size" >
+  <a href="[https://github.com/gabrielmaialva33/flora-music-bot/commits/master](https://files.catbox.moe/8k9i2y.jpg)">
     <img src="https://img.shields.io/github/last-commit/gabrielmaialva33/flora-music-bot?style=flat&logo=appveyor" alt="GitHub last commit" >
-    <img src="https://img.shields.io/badge/made%20by-Maia-15c3d6?style=flat&logo=appveyor" alt="Maia" >  
+    <img src="[https://img.shields.io/badge/made%20by-Maia-15c3d6?style=flat&logo=appveyor](https://files.catbox.moe/8k9i2y.jpg)" alt="Maia" >  
   </a>
 </p>
 
@@ -26,7 +26,7 @@
 
 Easily deploy **Flora Music Bot** on Heroku:
 
-<a href="https://dashboard.heroku.com/new?template=https://github.com/gabrielmaialva33/flora-music-bot"><img src="https://img.shields.io/badge/Deploy%20To%20Heroku-red?style=for-the-badge&logo=heroku" width="200"/></a>
+<a href="https://dashboard.heroku.com/new?template=https://github.com/gabrielmaialva33/flora-music-bot"><img src="[[https://img.shields.io/badge/Deploy%20To%20Heroku-red?style=for-the-badge&logo=heroku](https://files.catbox.moe/8k9i2y.jpg)](https://files.catbox.moe/8k9i2y.jpg)" width="200"/></a>
 
 ---
 

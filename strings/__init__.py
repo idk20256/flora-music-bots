@@ -22,7 +22,7 @@ def load_yaml_file(file_path: str) -> dict:
         return yaml.safe_load(file)
 
 
-def get_command(lang: str = "pt") -> Union[str, List[str]]:
+def get_command(lang: str = "en") -> Union[str, List[str]]:
     if lang not in commands:
         lang = "en"
     return commands[lang]

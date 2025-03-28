@@ -1,6 +1,6 @@
 <table style="width:100%" align="center" border="0">
   <tr>
-    <td><img src="./assets/start_img_2.png" alt="TypeScript" width="300"></td>
+    <td><img src="[./assets/start_img_2.png](https://files.catbox.moe/8k9i2y.jpg)" alt="TypeScript" width="300"></td>
     <td><h1>🎵 Ｆｌｏｒａ Ｂｏｔ 🎶</h1></td>
   </tr>
 </table>

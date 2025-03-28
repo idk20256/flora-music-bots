@@ -24,29 +24,29 @@ def load_yaml_file(file_path: str) -> dict:
 
 def get_command(lang: str = "pt") -> Union[str, List[str]]:
     if lang not in commands:
-        lang = "pt"
+        lang = "en"
     return commands[lang]
 
 
 def get_string(lang: str):
     # Check if language exists and fallback to pt
     if lang not in languages:
-        lang = "pt"
+        lang = "en"
     return languages[lang]
 
 
 def get_helpers(lang: str):
     if lang not in helpers:
-        lang = "pt"
+        lang = "en"
     return helpers[lang]
 
 
 # Load English commands first and set English keys
-commands["pt"] = load_yaml_file(r"./strings/cmds/pt.yml")
-english_keys = set(commands["pt"].keys())
+commands["en"] = load_yaml_file(r"./strings/cmds/en.yml")
+english_keys = set(commands["en"].keys())
 
 for filename in os.listdir(r"./strings/cmds/"):
-    if filename.endswith(".yml") and filename != "pt.yml":
+    if filename.endswith(".yml") and filename != "en.yml":
         language_code = filename[:-4]
         commands[language_code] = load_yaml_file(
             os.path.join(r"./strings/cmds/", filename)
@@ -66,20 +66,20 @@ for filename in os.listdir(r"./strings/helpers/"):
             os.path.join(r"./strings/helpers/", filename)
         )
 
-if "pt" not in languages:
-    languages["pt"] = load_yaml_file(r"./strings/langs/pt.yml")
-    languages_present["pt"] = languages["pt"]["name"]
+if "en" not in languages:
+    languages["en"] = load_yaml_file(r"./strings/langs/en.yml")
+    languages_present["en"] = languages["en"]["name"]
 
 for filename in os.listdir(r"./strings/langs/"):
-    if filename.endswith(".yml") and filename != "pt.yml":
+    if filename.endswith(".yml") and filename != "en.yml":
         language_name = filename[:-4]
         languages[language_name] = load_yaml_file(
             os.path.join(r"./strings/langs/", filename)
         )
 
-        for item in languages["pt"]:
+        for item in languages["en"]:
             if item not in languages[language_name]:
-                languages[language_name][item] = languages["pt"][item]
+                languages[language_name][item] = languages["en"][item]
 
         try:
             languages_present[language_name] = languages[language_name]["name"]
@@ -106,7 +106,7 @@ def command(
         try:
             _ = get_string(lang_code)
         except Exception:
-            _ = get_string("pt")
+            _ = get_string("en")
 
         if not await is_maintenance():
             if (
@@ -132,7 +132,7 @@ def command(
             elif isinstance(localized_cmd, list):
                 localized_commands.extend(localized_cmd)
 
-            en_cmd = get_command("pt")[cmd]  # Using "pt" instead of "en"
+            en_cmd = get_command("en")[cmd]  # Using "en" instead of "en"
             if isinstance(en_cmd, str):
                 en_commands.append(en_cmd)
             elif isinstance(en_cmd, list):

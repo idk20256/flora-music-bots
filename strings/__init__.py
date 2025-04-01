@@ -22,31 +22,31 @@ def load_yaml_file(file_path: str) -> dict:
         return yaml.safe_load(file)
 
 
-def get_command(lang: str = "id") -> Union[str, List[str]]:
+def get_command(lang: str = "en") -> Union[str, List[str]]:
     if lang not in commands:
-        lang = "id"
+        lang = "en"
     return commands[lang]
 
 
 def get_string(lang: str):
     # Check if language exists and fallback to pt
     if lang not in languages:
-        lang = "id"
+        lang = "en"
     return languages[lang]
 
 
 def get_helpers(lang: str):
     if lang not in helpers:
-        lang = "id"
+        lang = "en"
     return helpers[lang]
 
 
 # Load English commands first and set English keys
-commands["id"] = load_yaml_file(r"./strings/cmds/id.yml")
-english_keys = set(commands["id"].keys())
+commands["en"] = load_yaml_file(r"./strings/cmds/en.yml")
+english_keys = set(commands["en"].keys())
 
 for filename in os.listdir(r"./strings/cmds/"):
-    if filename.endswith(".yml") and filename != "id.yml":
+    if filename.endswith(".yml") and filename != "en.yml":
         language_code = filename[:-4]
         commands[language_code] = load_yaml_file(
             os.path.join(r"./strings/cmds/", filename)
@@ -66,20 +66,20 @@ for filename in os.listdir(r"./strings/helpers/"):
             os.path.join(r"./strings/helpers/", filename)
         )
 
-if "id" not in languages:
-    languages["id"] = load_yaml_file(r"./strings/langs/id.yml")
-    languages_present["id"] = languages["id"]["name"]
+if "en" not in languages:
+    languages["en"] = load_yaml_file(r"./strings/langs/en.yml")
+    languages_present["en"] = languages["en"]["name"]
 
 for filename in os.listdir(r"./strings/langs/"):
-    if filename.endswith(".yml") and filename != "id.yml":
+    if filename.endswith(".yml") and filename != "en.yml":
         language_name = filename[:-4]
         languages[language_name] = load_yaml_file(
             os.path.join(r"./strings/langs/", filename)
         )
 
-        for item in languages["id"]:
+        for item in languages["en"]:
             if item not in languages[language_name]:
-                languages[language_name][item] = languages["id"][item]
+                languages[language_name][item] = languages["en"][item]
 
         try:
             languages_present[language_name] = languages[language_name]["name"]
@@ -106,7 +106,7 @@ def command(
         try:
             _ = get_string(lang_code)
         except Exception:
-            _ = get_string("id")
+            _ = get_string("en")
 
         if not await is_maintenance():
             if (
@@ -169,7 +169,7 @@ def command(
         all_commands = []
 
         # Add English commands with prefix only
-        if lang_code == "id":
+        if lang_code == "en":
             all_commands.extend((cmd, True) for cmd in en_commands)  # Only with prefix
         else:
             # For non-English languages, add commands both with and without prefix

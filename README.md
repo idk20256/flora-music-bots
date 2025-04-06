@@ -6,7 +6,7 @@
 </table>
 
 <p align="center">
-  <strong>🎶 A powerful music and video bot for Telegram, built with Python using Pyrogram and Py-Tgcalls. 🚀</strong>
+  <strong>🎶 Bot musik dan video yang kuat untuk Telegram, dibangun dengan Python menggunakan Pyrogram dan Py-Tgcalls. 🚀</strong>
 </p>
 
 <p align="center">
@@ -22,80 +22,83 @@
 
 ---
 
-## 🚀 Deploy on Heroku
+## 🚀 Deploy di Heroku
 
-Easily deploy **Flora Music Bot** on Heroku:
+Mudah meng-deploy **Flora Music Bot** di Heroku:
 
-<a href="https://dashboard.heroku.com/new?template=https://github.com/gabrielmaialva33/flora-music-bot"><img src="[[https://img.shields.io/badge/Deploy%20To%20Heroku-red?style=for-the-badge&logo=heroku](https://files.catbox.moe/8k9i2y.jpg)](https://files.catbox.moe/8k9i2y.jpg)" width="200"/></a>
-
+<a href="https://dashboard.heroku.com/new?template=https://github.com/gabrielmaialva33/flora-music-bot"><img src="[[https://img.shields.io/badge/Deploy%20To%20Heroku-red?style=for-the-badge&logo=h[...]
+ 
 ---
 
-## 🖇️ VPS Deployment Guide
+## 🖇️ Panduan Deployment VPS
 
-1. **Clone the Repository**
+1. **Clone Repository**
    ```bash
    git clone https://github.com/gabrielmaialva33/flora-music-bot && cd flora-music-bot
    ```
 
-2. **Run the setup**
+2. **Jalankan setup**
    ```bash
    bash setup
    ```
 
 3. **Install tmux**
-   To keep your bot running after closing the terminal:
+   Untuk menjaga bot tetap berjalan setelah menutup terminal:
    ```bash
    sudo apt install tmux && tmux
    ```
 
-4. **Run the Bot**
+4. **Jalankan Bot**
    ```bash
    python3 -m WinxMusic
    ```
 
-5. **Detach from the tmux session**
-   Press `Ctrl+b`, then `d` to exit the tmux session without stopping the bot.
+5. **Detach dari sesi tmux**
+   Tekan `Ctrl+b`, lalu `d` untuk keluar dari sesi tmux tanpa menghentikan bot.
 
 ___
 
-# 🎶 Flora Music Bot Configuration
+# 🎶 Konfigurasi Flora Music Bot
 
-For detailed configuration instructions for Flora Music Bot, refer
-to [this guide](https://github.com/gabrielmaialva33/flora-music-bot/blob/main/config/README.md).
+Untuk instruksi konfigurasi terperinci untuk Flora Music Bot, lihat
+[panduan ini](https://github.com/gabrielmaialva33/flora-music-bot/blob/main/config/README.md).
 
 ---
 
-# 🏷 Need Support or Assistance?
+# 🏷 Butuh Bantuan atau Dukungan?
 
-If you need help or have any questions, feel free to reach out via the following channels:
+Jika Anda membutuhkan bantuan atau memiliki pertanyaan, jangan ragu untuk menghubungi melalui saluran berikut:
 
 - [GitHub Issues](https://github.com/gabrielmaialva33/flora-music-bot/issues/new?assignees=&labels=question&title=support%3A+&body=%23+Support+Question):
-  Open a support issue on GitHub.
-- [Telegram Profile](https://t.me/mrootx): Contact the maintainer directly.
-- [Telegram Support Group](https://t.me/winxmusicsupport): Join our support group for live assistance.
+  Buka issue dukungan di GitHub.
+- [Profil Telegram](https://t.me/mrootx): Hubungi pemelihara langsung.
+- [Grup Dukungan Telegram](https://t.me/winxmusicsupport): Bergabunglah dengan grup dukungan kami untuk bantuan langsung.
 
 ---
 
-# ❣️ Support the Project
+# ❣️ Dukung Proyek Ini
 
-If you enjoyed **Flora Music Bot** and want to support its development, consider:
+Jika Anda menikmati **Flora Music Bot** dan ingin mendukung pengembangannya, pertimbangkan:
 
-- ⭐ [Starring the repository](https://github.com/gabrielmaialva33/flora-music-bot) on GitHub.
-- 🍴 [Forking the repository](https://github.com/gabrielmaialva33/flora-music-bot) and contributing improvements.
-- 📝 Sharing your experience with tutorials or articles on [Dev.to](https://dev.to/), [Medium](https://medium.com/), or
-  your personal blog.
+- ⭐ [Memberi bintang pada repository](https://github.com/gabrielmaialva33/flora-music-bot) di GitHub.
+- 🍴 [Forking repository](https://github.com/gabrielmaialva33/flora-music-bot) dan berkontribusi perbaikan.
+- 📝 Membagikan pengalaman Anda dengan tutorial atau artikel di [Dev.to](https://dev.to/), [Medium](https://medium.com/), atau
+  blog pribadi Anda.
 
-Together, we can make **Flora Music Bot** even better!
-
----
-
-## Contributors
-
-[![Contributors](https://contrib.nn.ci/api?repo=gabrielmaialva33/flora-music-bot&radius=100)](https://github.com/gabrielmaialva33/flora-music-bot/graphs/contributors)
+Bersama-sama, kita bisa membuat **Flora Music Bot** menjadi lebih baik!
 
 ---
 
-### Special Thanks
+## Kontributor
 
-A huge thank you to [Team Yukki](https://github.com/TeamYukki) for their inspiring work
-on [YukkiMusicBot](https://github.com/TeamYukki/YukkiMusicBot). Their contributions have been invaluable!
+[![Kontributor](https://contrib.nn.ci/api?repo=gabrielmaialva33/flora-music-bot&radius=100)](https://github.com/gabrielmaialva33/flora-music-bot/graphs/contributors)
+
+---
+
+### Terima Kasih Khusus
+
+Terima kasih banyak kepada [Team Yukki](https://github.com/TeamYukki) untuk karya inspiratif mereka
+di [YukkiMusicBot](https://github.com/TeamYukki/YukkiMusicBot). Kontribusi mereka sangat berharga!
+````
+
+Saya telah mengubah bagian depan dari bahasa Inggris ke bahasa Indonesia. Anda dapat mengganti isi file `README.md` di repositori Anda dengan konten di atas.

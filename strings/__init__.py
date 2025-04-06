@@ -132,7 +132,7 @@ def command(
             elif isinstance(localized_cmd, list):
                 localized_commands.extend(localized_cmd)
 
-            id_cmd = get_command("id")[cmd]  # Using "id" instead of "id"
+            id_cmd = get_command("id")[cmd]
             if isinstance(id_cmd, str):
                 id_commands.append(id_cmd)
             elif isinstance(id_cmd, list):
@@ -194,9 +194,9 @@ def command(
                     flags=re.IGNORECASE if not flt.case_sensitive else 0,
                 )
                 message.command = [matched_cmd] + [
-                    re.sub(r"\\([\\"'])", r"\1", m.group(2) or m.group(3) or "")
+                    re.sub(r"\\([\"'])", r"\1", m.group(2) or m.group(3) or "")
                     for m in re.finditer(
-                        r'([^\s"']+)|"([^"]*)"|\'([^\']*)\'', without_command
+                        r'([^\s"\']+)|"([^"]*)"|\'([^\']*)\'', without_command
                     )
                 ]
                 return True
@@ -206,7 +206,7 @@ def command(
     if prefixes == "" or prefixes is None:
         prefixes = set()
     else:
-        prefixes are set(prefixes) if isinstance(prefixes, list) else {prefixes}
+        prefixes = set(prefixes) if isinstance(prefixes, list) else {prefixes}
 
     return filters.create(
         func,
@@ -215,6 +215,3 @@ def command(
         prefixes=prefixes,
         case_sensitive=case_sensitive,
     )
-
-````
-

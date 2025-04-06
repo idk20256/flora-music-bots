@@ -217,5 +217,3 @@ def command(
     )
 
 ````
-
-Setelah Anda melakukan perubahan ini pada file `strings/__init__.py`, bahasa default bot akan diubah ke bahasa Indonesia (`id`). Pastikan Anda menyimpan perubahan dan merestart bot Anda agar perubahan diterapkan.

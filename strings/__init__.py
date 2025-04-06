@@ -22,37 +22,37 @@ def load_yaml_file(file_path: str) -> dict:
         return yaml.safe_load(file)
 
 
-def get_command(lang: str = "en") -> Union[str, List[str]]:
+def get_command(lang: str = "id") -> Union[str, List[str]]:
     if lang not in commands:
-        lang = "en"
+        lang = "id"
     return commands[lang]
 
 
 def get_string(lang: str):
-    # Check if language exists and fallback to pt
+    # Check if language exists and fallback to id
     if lang not in languages:
-        lang = "en"
+        lang = "id"
     return languages[lang]
 
 
 def get_helpers(lang: str):
     if lang not in helpers:
-        lang = "en"
+        lang = "id"
     return helpers[lang]
 
 
-# Load English commands first and set English keys
-commands["en"] = load_yaml_file(r"./strings/cmds/en.yml")
-english_keys = set(commands["en"].keys())
+# Load Indonesian commands first and set Indonesian keys
+commands["id"] = load_yaml_file(r"./strings/cmds/id.yml")
+indonesian_keys = set(commands["id"].keys())
 
 for filename in os.listdir(r"./strings/cmds/"):
-    if filename.endswith(".yml") and filename != "en.yml":
+    if filename.endswith(".yml") and filename != "id.yml":
         language_code = filename[:-4]
         commands[language_code] = load_yaml_file(
             os.path.join(r"./strings/cmds/", filename)
         )
 
-        missing_keys = english_keys - set(commands[language_code].keys())
+        missing_keys = indonesian_keys - set(commands[language_code].keys())
         if missing_keys:
             print(
                 f"Error: Missing keys in strings/cmds/{language_code}.yml: {', '.join(missing_keys)}"
@@ -66,20 +66,20 @@ for filename in os.listdir(r"./strings/helpers/"):
             os.path.join(r"./strings/helpers/", filename)
         )
 
-if "en" not in languages:
-    languages["en"] = load_yaml_file(r"./strings/langs/en.yml")
-    languages_present["en"] = languages["en"]["name"]
+if "id" not in languages:
+    languages["id"] = load_yaml_file(r"./strings/langs/id.yml")
+    languages_present["id"] = languages["id"]["name"]
 
 for filename in os.listdir(r"./strings/langs/"):
-    if filename.endswith(".yml") and filename != "en.yml":
+    if filename.endswith(".yml") and filename != "id.yml":
         language_name = filename[:-4]
         languages[language_name] = load_yaml_file(
             os.path.join(r"./strings/langs/", filename)
         )
 
-        for item in languages["en"]:
+        for item in languages["id"]:
             if item not in languages[language_name]:
-                languages[language_name][item] = languages["en"][item]
+                languages[language_name][item] = languages["id"][item]
 
         try:
             languages_present[language_name] = languages[language_name]["name"]
@@ -106,7 +106,7 @@ def command(
         try:
             _ = get_string(lang_code)
         except Exception:
-            _ = get_string("en")
+            _ = get_string("id")
 
         if not await is_maintenance():
             if (
@@ -122,9 +122,9 @@ def command(
         else:
             commands_list = commands
 
-        # Get localized and English commands
+        # Get localized and Indonesian commands
         localized_commands = []
-        en_commands = []
+        id_commands = []
         for cmd in commands_list:
             localized_cmd = get_command(lang_code)[cmd]
             if isinstance(localized_cmd, str):
@@ -132,11 +132,11 @@ def command(
             elif isinstance(localized_cmd, list):
                 localized_commands.extend(localized_cmd)
 
-            en_cmd = get_command("en")[cmd]  # Using "en" instead of "en"
-            if isinstance(en_cmd, str):
-                en_commands.append(en_cmd)
-            elif isinstance(en_cmd, list):
-                en_commands.extend(en_cmd)
+            id_cmd = get_command("id")[cmd]  # Using "id" instead of "id"
+            if isinstance(id_cmd, str):
+                id_commands.append(id_cmd)
+            elif isinstance(id_cmd, list):
+                id_commands.extend(id_cmd)
 
         username = client.me.username or ""
         text = message.text or message.caption
@@ -168,20 +168,20 @@ def command(
 
         all_commands = []
 
-        # Add English commands with prefix only
-        if lang_code == "en":
-            all_commands.extend((cmd, True) for cmd in en_commands)  # Only with prefix
+        # Add Indonesian commands with prefix only
+        if lang_code == "id":
+            all_commands.extend((cmd, True) for cmd in id_commands)  # Only with prefix
         else:
-            # For non-English languages, add commands both with and without prefix
+            # For non-Indonesian languages, add commands both with and without prefix
             all_commands.extend(
-                (cmd, True) for cmd in en_commands
-            )  # English commands with prefix
+                (cmd, True) for cmd in id_commands
+            )  # Indonesian commands with prefix
             all_commands.extend(
                 (cmd, True) for cmd in localized_commands
-            )  # Non-English commands with prefix
+            )  # Non-Indonesian commands with prefix
             all_commands.extend(
                 (cmd, False) for cmd in localized_commands
-            )  # Non-English commands without prefix
+            )  # Non-Indonesian commands without prefix
 
         for cmd, with_prefix in all_commands:
             matched_cmd = match_command(cmd, text, with_prefix)
@@ -194,9 +194,9 @@ def command(
                     flags=re.IGNORECASE if not flt.case_sensitive else 0,
                 )
                 message.command = [matched_cmd] + [
-                    re.sub(r"\\([\"'])", r"\1", m.group(2) or m.group(3) or "")
+                    re.sub(r"\\([\\"'])", r"\1", m.group(2) or m.group(3) or "")
                     for m in re.finditer(
-                        r'([^\s"\']+)|"([^"]*)"|\'([^\']*)\'', without_command
+                        r'([^\s"']+)|"([^"]*)"|\'([^\']*)\'', without_command
                     )
                 ]
                 return True
@@ -215,3 +215,7 @@ def command(
         prefixes=prefixes,
         case_sensitive=case_sensitive,
     )
+
+````
+
+Setelah Anda melakukan perubahan ini pada file `strings/__init__.py`, bahasa default bot akan diubah ke bahasa Indonesia (`id`). Pastikan Anda menyimpan perubahan dan merestart bot Anda agar perubahan diterapkan.

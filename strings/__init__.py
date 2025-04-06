@@ -206,7 +206,7 @@ def command(
     if prefixes == "" or prefixes is None:
         prefixes = set()
     else:
-        prefixes = set(prefixes) if isinstance(prefixes, list) else {prefixes}
+        prefixes are set(prefixes) if isinstance(prefixes, list) else {prefixes}
 
     return filters.create(
         func,
@@ -217,3 +217,4 @@ def command(
     )
 
 ````
+

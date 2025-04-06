@@ -1,106 +1,106 @@
-# Bilingual Commands - English/Portuguese
+# Perintah Bilingual - Inggris/Indonesia
 
 # Bot
-PING_COMMAND: [ "ping", "alive", "vivo" ]
-PRIVACY_COMMAND: [ "privacy", "privacidade" ]
-START_COMMAND: [ "start", "iniciar" ]
-HELP_COMMAND: [ "help", "ajuda" ]
-SETTINGS_COMMAND: [ "settings", "config" ]
-RELOAD_COMMAND: [ "reload", "recarregar" ]
+PING_COMMAND: [ "ping", "alive", "hidup" ]
+PRIVACY_COMMAND: [ "privacy", "privasi" ]
+START_COMMAND: [ "start", "mulai" ]
+HELP_COMMAND: [ "help", "bantuan" ]
+SETTINGS_COMMAND: [ "settings", "pengaturan" ]
+RELOAD_COMMAND: [ "reload", "muat_ulang" ]
 GSTATS_COMMAND: [ "gstats" ]
-STATS_COMMAND: [ "stats", "estatísticas" ]
-LANGUAGE_COMMAND: [ "lang", "idioma" ]
+STATS_COMMAND: [ "stats", "statistik" ]
+LANGUAGE_COMMAND: [ "lang", "bahasa" ]
 
-# Playback
-PLAY_COMMAND: [ "play", "tocar" ]
-PLAYMODE_COMMAND: [ "playmode", "modoreprodução" ]
-CHANNELPLAY_COMMAND: [ "channelplay", "reproducaocanal" ]
-STREAM_COMMAND: [ "stream", "transmitir" ]
+# Pemutaran
+PLAY_COMMAND: [ "play", "putar" ]
+PLAYMODE_COMMAND: [ "playmode", "modemutar" ]
+CHANNELPLAY_COMMAND: [ "channelplay", "putarsaluran" ]
+STREAM_COMMAND: [ "stream", "siaran" ]
 
-# Playlist
+# Daftar Putar
 PLAYLIST_COMMAND: [ "playlist" ]
-PLAY_PLAYLIST_COMMAND: [ "playplaylist", "tocarplaylist" ]
-DELETE_PLAYLIST_COMMAND: [ "deleteplaylist", "deletarplaylist" ]
-ADD_PLAYLIST_COMMAND: [ "addplaylist", "adicionarplaylist" ]
+PLAY_PLAYLIST_COMMAND: [ "playplaylist", "putardaftar" ]
+DELETE_PLAYLIST_COMMAND: [ "deleteplaylist", "hapusdaftar" ]
+ADD_PLAYLIST_COMMAND: [ "addplaylist", "tambahkan_daftar" ]
 
-# Tools
-QUEUE_COMMAND: [ "queue", "fila" ]
-SONG_COMMAND: [ "song", "video", "musica" ]
-LYRICS_COMMAND: [ "lyrics", "letra" ]
+# Alat
+QUEUE_COMMAND: [ "queue", "antrian" ]
+SONG_COMMAND: [ "song", "video", "musik" ]
+LYRICS_COMMAND: [ "lyrics", "lirik" ]
 
-# Administration
-AUTH_COMMAND: [ "auth", "autorizados" ]
-UNAUTH_COMMAND: [ "unauth", "removerautorizado" ]
-AUTHUSERS_COMMAND: [ "authusers", "usuariosautorizados" ]
-PAUSE_COMMAND: [ "pause", "pausar" ]
-RESUME_COMMAND: [ "resume", "retomar" ]
-MUTE_COMMAND: [ "mute", "silenciar" ]
-UNMUTE_COMMAND: [ "unmute", "desmutar" ]
-STOP_COMMAND: [ "stop", "parar" ]
-SKIP_COMMAND: [ "skip", "pular" ]
-SHUFFLE_COMMAND: [ "shuffle", "embaralhar" ]
+# Administrasi
+AUTH_COMMAND: [ "auth", "otorisasi" ]
+UNAUTH_COMMAND: [ "unauth", "hapus_otorisasi" ]
+AUTHUSERS_COMMAND: [ "authusers", "pengguna_otorisasi" ]
+PAUSE_COMMAND: [ "pause", "jeda" ]
+RESUME_COMMAND: [ "resume", "lanjutkan" ]
+MUTE_COMMAND: [ "mute", "diam" ]
+UNMUTE_COMMAND: [ "unmute", "buka_diam" ]
+STOP_COMMAND: [ "stop", "berhenti" ]
+SKIP_COMMAND: [ "skip", "lewati" ]
+SHUFFLE_COMMAND: [ "shuffle", "acak" ]
 LOOP_COMMAND: [ "loop" ]
-SEEK_COMMAND: [ "seek", "buscar" ]
-SEEK_BACK_COMMAND: [ "seekback", "retroceder" ]
-REBOOT_COMMAND: [ "reboot", "reiniciar" ]
+SEEK_COMMAND: [ "seek", "cari" ]
+SEEK_BACK_COMMAND: [ "seekback", "mundur" ]
+REBOOT_COMMAND: [ "reboot", "mulai_ulang" ]
 
-# Sudo Users
-ADDSUDO_COMMAND: [ "addsudo", "adicionarsudo" ]
-DELSUDO_COMMAND: [ "delsudo", "removersudo" ]
-SUDOUSERS_COMMAND: [ "sudolist", "listasudo" ]
+# Pengguna Sudo
+ADDSUDO_COMMAND: [ "addsudo", "tambahsudo" ]
+DELSUDO_COMMAND: [ "delsudo", "hapusudo" ]
+SUDOUSERS_COMMAND: [ "sudolist", "daftarsudo" ]
 
-# Broadcast
-BROADCAST_COMMAND: [ "broadcast", "gcast", "transmissao" ]
+# Siaran
+BROADCAST_COMMAND: [ "broadcast", "gcast", "siaran" ]
 
-# Blacklist
-BLACKLISTCHAT_COMMAND: [ "blacklistchat", "bloquearchat" ]
-WHITELISTCHAT_COMMAND: [ "whitelistchat", "liberarchat" ]
-BLACKLISTEDCHAT_COMMAND: [ "blacklistedchat", "chatsbloqueados" ]
+# Daftar Hitam
+BLACKLISTCHAT_COMMAND: [ "blacklistchat", "blokirchat" ]
+WHITELISTCHAT_COMMAND: [ "whitelistchat", "izinkanchat" ]
+BLACKLISTEDCHAT_COMMAND: [ "blacklistedchat", "chat_diblokir" ]
 
-# Video Calls
-VIDEOLIMIT_COMMAND: [ "set_video_limit", "limitevideo" ]
-VIDEOMODE_COMMAND: [ "videomode", "modovideo" ]
+# Panggilan Video
+VIDEOLIMIT_COMMAND: [ "set_video_limit", "bataskuota_video" ]
+VIDEOMODE_COMMAND: [ "videomode", "modevideo" ]
 
-# Maintenance
-MAINTENANCE_COMMAND: [ "maintenance", "manutencao" ]
+# Pemeliharaan
+MAINTENANCE_COMMAND: [ "maintenance", "pemeliharaan" ]
 LOGGER_COMMAND: [ "logger" ]
 
 # Heroku
-GETLOG_COMMAND: [ "getlog", "log", "obterlog" ]
-GETVAR_COMMAND: [ "getvar", "obtervar" ]
-DELVAR_COMMAND: [ "delvar", "deletarvar" ]
-SETVAR_COMMAND: [ "setvar", "definirvar" ]
-USAGE_COMMAND: [ "usage", "uso" ]
+GETLOG_COMMAND: [ "getlog", "log", "ambil_log" ]
+GETVAR_COMMAND: [ "getvar", "ambil_var" ]
+DELVAR_COMMAND: [ "delvar", "hapus_var" ]
+SETVAR_COMMAND: [ "setvar", "setel_var" ]
+USAGE_COMMAND: [ "usage", "pemakaian" ]
 
-# Basic Bot Commands
-UPDATE_COMMAND: [ "update", "up", "atualizar" ]
-RESTART_COMMAND: [ "restart", "reiniciar" ]
-AUTOEND_COMMAND: [ "autoend", "autoencerrar" ]
+# Perintah Bot Dasar
+UPDATE_COMMAND: [ "update", "up", "perbarui" ]
+RESTART_COMMAND: [ "restart", "mulai_ulang" ]
+AUTOEND_COMMAND: [ "autoend", "otomatis_akhir" ]
 
-# Private Mode
-AUTHORIZE_COMMAND: [ "authorize", "autorizar" ]
-UNAUTHORIZE_COMMAND: [ "unauthorize", "removerautorizado" ]
-AUTHORIZED_COMMAND: [ "authorized", "autorizados" ]
+# Mode Pribadi
+AUTHORIZE_COMMAND: [ "authorize", "otorisasi" ]
+UNAUTHORIZE_COMMAND: [ "unauthorize", "hapus_otorisasi" ]
+AUTHORIZED_COMMAND: [ "authorized", "diotorisasi" ]
 
-# User Blocking
-BLOCK_COMMAND: [ "block", "bloquear" ]
-UNBLOCK_COMMAND: [ "unblock", "desbloquear" ]
-BLOCKED_COMMAND: [ "blockedusers", "usuariosbloqueados" ]
+# Pemblokiran Pengguna
+BLOCK_COMMAND: [ "block", "blokir" ]
+UNBLOCK_COMMAND: [ "unblock", "buka_blokir" ]
+BLOCKED_COMMAND: [ "blockedusers", "pengguna_diblokir" ]
 
-# Speed Test
-SPEEDTEST_COMMAND: [ "speedtest", "velocidade" ]
+# Tes Kecepatan
+SPEEDTEST_COMMAND: [ "speedtest", "uji_kecepatan" ]
 
-# Voice Chat
-ACTIVEVC_COMMAND: [ "activevc", "vozativa" ]
-ACTIVEVIDEO_COMMAND: [ "activevideo", "videoativo" ]
+# Obrolan Suara
+ACTIVEVC_COMMAND: [ "activevc", "suara_aktif" ]
+ACTIVEVIDEO_COMMAND: [ "activevideo", "video_aktif" ]
 AC_COMMAND: [ "ac" ]
 
 # Gban
 GBAN_COMMAND: [ "gban" ]
 UNGBAN_COMMAND: [ "ungban" ]
-GBANNED_COMMAND: [ "gbannedusers", "usuariosgbaneados" ]
+GBANNED_COMMAND: [ "gbannedusers", "pengguna_gban" ]
 
 # AnimiZeY
-MOVIES_COMMAND: [ "movies", "filmes", "cinema", "filme" ]
+MOVIES_COMMAND: [ "movies", "film" ]
 ANIME_COMMAND: [ "anime" ]
-FOLDER_COMMAND: [ "folder", "pasta" ]
+FOLDER_COMMAND: [ "folder", "folder" ]

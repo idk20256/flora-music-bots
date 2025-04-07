@@ -161,7 +161,7 @@ play_20: "🔄 Memproses permintaan Anda..."
 play_21: "⏳ Harap tunggu..."
 
 #daftar putar
-pqlaylist_1: "📋 **Penggunaan:** /play [nama lagu atau tautan YouTube atau balas audio]\n\nJika Anda ingin memutar daftar putar dari server bot! Tekan tombol di bawah ini."
+playlist_1: "Pesan kesalahan atau teks yang ingin Anda tampilkan untuk playlist_1"
 playlist_2: "🔄 Mengambil daftar putar Anda... harap tunggu!"
 playlist_3: "🚫 Anda tidak memiliki daftar putar di server bot."
 playlist_4: "📃 Daftar putar diperoleh:\n\n"

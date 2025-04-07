@@ -263,10 +263,10 @@ S_B_1: "🗒 Perintah"
 S_B_2: "🔧 Pengaturan"
 S_B_3: "📨 Dukungan"
 S_B_4: "📨 Saluran"
-S_B_5: "✚ Tambahkan saya ke grup Anda ✚"
+S_B_5: "✚ Tambahkan ke grup ✚"
 S_B_6: "💡 Repositori Git"
 S_B_7: "👤 Pemilik"
-S_B_8: "🔎 Bagaimana cara menggunakan? Menu perintah"
+S_B_8: "🔎 perintah"
 
 #PlayMode
 PM_B_1: "Pemutaran langsung"

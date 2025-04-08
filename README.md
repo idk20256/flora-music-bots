@@ -1,26 +1,3 @@
-<table style="width:100%" align="center" border="0">
-  <tr>
-    <td><img src="[./assets/start_img_2.png]([https://files.catbox.moe/8k9i2y.jpg](https://files.catbox.moe/8k9i2y.jpg))" alt="TypeScript" width="300"></td>
-    <td><h1>🎵 Ｆｌｏｒａ Ｂｏｔ 🎶</h1></td>
-  </tr>
-</table>
-
-<p align="center">
-  <strong>🎶 Bot musik dan video yang kuat untuk Telegram, dibangun dengan Python menggunakan Pyrogram dan Py-Tgcalls. 🚀</strong>
-</p>
-
-<p align="center">
-  <img src="[https://img.shields.io/github/license/gabrielmaialva33/flora-music-bot?color=00b8d3?style=flat&logo=appveyor](https://files.catbox.moe/8k9i2y.jpg)" alt="License" />
-  <img src="[https://img.shields.io/github/languages/top/gabrielmaialva33/flora-music-bot?style=flat&logo=appveyor](https://files.catbox.moe/8k9i2y.jpg)" alt="GitHub top language" >
-  <img src="[https://img.shields.io/github/languages/count/gabrielmaialva33/flora-music-bot?style=flat&logo=appveyor](https://files.catbox.moe/8k9i2y.jpg)" alt="GitHub language count" >
-  <img src="[https://img.shields.io/github/repo-size/gabrielmaialva33/flora-music-bot?style=flat&logo=appveyor](https://files.catbox.moe/8k9i2y.jpg)" alt="Repository size" >
-  <a href="[https://github.com/gabrielmaialva33/flora-music-bot/commits/master](https://files.catbox.moe/8k9i2y.jpg)">
-    <img src="https://img.shields.io/github/last-commit/gabrielmaialva33/flora-music-bot?style=flat&logo=appveyor" alt="GitHub last commit" >
-    <img src="[https://img.shields.io/badge/made%20by-Maia-15c3d6?style=flat&logo=appveyor](https://files.catbox.moe/8k9i2y.jpg)" alt="Maia" >  
-  </a>
-</p>
-
----
 
 ## 🚀 Deploy di Heroku
 

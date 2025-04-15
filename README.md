@@ -78,4 +78,4 @@ Terima kasih banyak kepada [Team Yukki](https://github.com/TeamYukki) untuk kary
 di [YukkiMusicBot](https://github.com/TeamYukki/YukkiMusicBot). Kontribusi mereka sangat berharga!
 ````
 
-Saya telah mengubah bagian depan dari bahasa Inggris ke bahasa Indonesia. Anda dapat mengganti isi file `README.md` di repositori Anda dengan konten di atas.
+Saya telah mengubah bagian depan dari bahasa Inggris ke bahasa Indonesia da beberapa bagian tertentu dari keaslianya . untuk mempermudah pemula seperti saya dalam melakukan running

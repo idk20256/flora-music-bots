@@ -44,7 +44,7 @@ from WinxMusic.utils.inline.start import private_panel
 from config import BANNED_USERS, CLEANMODE_DELETE_MINS, OWNER_ID
 from strings import get_command
 
-SETTINGS_COMMAND = get_command("pt")["SETTINGS_COMMAND"]
+SETTINGS_COMMAND = get_command("id")["SETTINGS_COMMAND"]
 
 
 @app.on_message(filters.command(SETTINGS_COMMAND) & filters.group & ~BANNED_USERS)

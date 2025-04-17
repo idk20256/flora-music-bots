@@ -68,11 +68,11 @@ async def language_markup(client, CallbackQuery, _):
     try:
         _ = get_string(langauge)
         await CallbackQuery.answer(
-            "Your language changed successfully..", show_alert=True
+            "Bahasa Anda berhasil diubah..", show_alert=True
         )
     except Exception:
         return await CallbackQuery.answer(
-            "Failed to change language or language in under Upadte",
+            "Gagal mengubah bahasa atau bahasa sedang Pembaruan",
             show_alert=True,
         )
     await set_lang(CallbackQuery.message.chat.id, langauge)

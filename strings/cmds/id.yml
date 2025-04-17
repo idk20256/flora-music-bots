@@ -12,9 +12,9 @@ STATS_COMMAND: [ "stats" ]
 LANGUAGE_COMMAND: [ "lang", "language", "langs" ]
 
 # Play Commands
-PLAY_COMMAND: [ "play", "vplay", "cplay", "cvplay", "playforce", "vplayforce", "cplayforce", "cvplayforce" ]
+PLAY_COMMAND: [ "play", "vplay", "playforce", "vplayforce" ]
 PLAYMODE_COMMAND: [ "playmode" ]
-CHANNELPLAY_COMMAND: [ "channelplay" ]
+CHANNELPLAY_COMMAND: [ "channelplay", "cplay", "cvplay", "cplayforce", "cvplayforce"]
 STREAM_COMMAND: [ "stream", "cstream", "streamforce", "cstreamforce" ]
 
 #Playlists Command

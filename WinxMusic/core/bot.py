@@ -106,9 +106,9 @@ class WinxBot(Client):
             await self.send_message(
                 config.LOG_GROUP_ID,
                 text=(
-                    f"<u><b>{self.mention} Bot Started :</b></u>\n\n"
+                    f"<u><b>Menjalankan bot {self.mention} :</b></u>\n\n"
                     f"Id : <code>{self.id}</code>\n"
-                    f"Name : {self.name}\n"
+                    f"Nama : {self.name}\n"
                     f"Username : @{self.username}"
                 ),
             )
@@ -135,47 +135,47 @@ class WinxBot(Client):
 
     async def _set_default_commands(self):
         private_commands = [
-            BotCommand("start", "Iniciar o bot"),
-            BotCommand("help", "Obter o menu de ajuda"),
-            BotCommand("ping", "Verificar se o bot está ativo ou inativo"),
+            BotCommand("start", "Mulai botnya"),
+            BotCommand("help", "Dapatkan menu bantuan"),
+            BotCommand("ping", "Periksa apakah bot aktif atau tidak aktif"),
         ]
-        group_commands = [BotCommand("play", "Começar a tocar a música solicitada")]
+        group_commands = [BotCommand("play", "Mulai memutar lagu yang diminta")]
         admin_commands = [
-            BotCommand("play", "Começar a tocar a música solicitada"),
-            BotCommand("skip", "Ir para a próxima música na fila"),
-            BotCommand("pause", "Pausar a música atual"),
-            BotCommand("resume", "Retomar a música pausada"),
-            BotCommand("end", "Limpar a fila e sair do chat de voz"),
-            BotCommand("shuffle", "Embaralhar aleatoriamente a playlist na fila"),
-            BotCommand("playmode", "Alterar o modo de reprodução padrão do seu chat"),
-            BotCommand("settings", "Abrir as configurações do bot para o seu chat"),
+            BotCommand("play", "Mulai memutar lagu yang diminta"),
+            BotCommand("skip", "Pergi ke lagu berikutnya dalam antrian"),
+            BotCommand("pause", "Jeda lagu saat ini"),
+            BotCommand("resume", "Melanjutkan musik yang dijeda"),
+            BotCommand("end", "Hapus antrean dan tinggalkan obrolan suara"),
+            BotCommand("shuffle", "Acak daftar putar dalam antrean"),
+            BotCommand("playmode", "Ubah mode pemutaran default untuk obrolan Anda"),
+            BotCommand("settings", "Buka pengaturan bot untuk obrolan Anda"),
         ]
         owner_commands = [
-            BotCommand("update", "Atualizar o bot"),
-            BotCommand("restart", "Reiniciar o bot"),
-            BotCommand("logs", "Obter os registros"),
-            BotCommand("export", "Exportar todos os dados do MongoDB"),
-            BotCommand("import", "Importar todos os dados no MongoDB"),
-            BotCommand("addsudo", "Adicionar um usuário como sudoer"),
-            BotCommand("delsudo", "Remover um usuário dos sudoers"),
-            BotCommand("sudolist", "Listar todos os usuários sudo"),
-            BotCommand("log", "Obter os registros do bot"),
-            BotCommand("getvar", "Obter uma variável de ambiente específica"),
-            BotCommand("delvar", "Excluir uma variável de ambiente específica"),
-            BotCommand("setvar", "Definir uma variável de ambiente específica"),
-            BotCommand("usage", "Obter informações sobre o uso do Dyno"),
-            BotCommand("maintenance", "Ativar ou desativar o modo de manutenção"),
-            BotCommand("logger", "Ativar ou desativar o registro de atividades"),
-            BotCommand("block", "Bloquear um usuário"),
-            BotCommand("unblock", "Desbloquear um usuário"),
-            BotCommand("blacklist", "Adicionar um chat à lista negra"),
-            BotCommand("whitelist", "Remover um chat da lista negra"),
-            BotCommand("blacklisted", "Listar todos os chats na lista negra"),
+            BotCommand("update", "Perbarui bot"),
+            BotCommand("restart", "Mulai ulang bot"),
+            BotCommand("logs", "Dapatkan rekamannya"),
+            BotCommand("export", "Ekspor semua data dari MongoDB"),
+            BotCommand("import", "Impor semua data ke MongoDB"),
+            BotCommand("addsudo", "Tambahkan pengguna sebagai sudoer"),
+            BotCommand("delsudo", "Hapus pengguna dari sudoers"),
+            BotCommand("sudolist", "Daftar semua pengguna sudo"),
+            BotCommand("log", "Dapatkan log bot"),
+            BotCommand("getvar", "Dapatkan variabel lingkungan tertentu"),
+            BotCommand("delvar", "Hapus variabel lingkungan tertentu"),
+            BotCommand("setvar", "Tetapkan variabel lingkungan tertentu"),
+            BotCommand("usage", "Dapatkan informasi tentang penggunaan Dyno"),
+            BotCommand("maintenance", "Mengaktifkan atau menonaktifkan mode pemeliharaan"),
+            BotCommand("logger", "Mengaktifkan atau menonaktifkan pencatatan aktivitas"),
+            BotCommand("block", "Blokir pengguna"),
+            BotCommand("unblock", "Buka blokir pengguna"),
+            BotCommand("blacklist", "Tambahkan obrolan ke daftar hitam"),
+            BotCommand("whitelist", "Hapus obrolan dari daftar hitam"),
+            BotCommand("blacklisted", "Daftarkan semua obrolan yang masuk daftar hitam"),
             BotCommand(
-                "autoend", "Ativar ou desativar o término automático para transmissões"
+                "autoend", "Mengaktifkan atau menonaktifkan akhir otomatis untuk siaran"
             ),
-            BotCommand("reboot", "Reiniciar o bot"),
-            BotCommand("restart", "Reiniciar o bot"),
+            BotCommand("reboot", "Mulai ulang bot"),
+            BotCommand("restart", "Mulai ulang bot"),
         ]
 
         await self.set_bot_commands(
@@ -280,6 +280,6 @@ class WinxBot(Client):
         LOGGER(__name__).info("Bot is shutting down")
         await self.send_message(
             config.LOG_GROUP_ID,
-            text=f"🛑 <u><b>{self.mention} Bot Desligado :</b></u>\n\n🆔 <b>ID</b>: <code>{self.id}</code>\n📛 <b>Nome</b>: {self.name}\n🔗 <b>Nome de usuário:</b> @{self.username}",
+            text=f"🛑 <u><b>{self.mention} Bot Off :</b></u>\n\n🆔 <b>ID</b>: <code>{self.id}</code>\n📛 <b>Nama</b>: {self.name}\n🔗 <b>Nama Pengguna:</b> @{self.username}",
         )
         await super().stop()

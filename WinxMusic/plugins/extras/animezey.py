@@ -11,8 +11,8 @@ from WinxMusic.utils.stream.stream import stream
 from config import BANNED_USERS, PREFIXES
 from strings import get_command, get_string
 
-MOVIES_COMMAND = get_command("pt")["MOVIES_COMMAND"]
-ANIME_COMMAND = get_command("pt")["ANIME_COMMAND"]
+MOVIES_COMMAND = get_command("id")["MOVIES_COMMAND"]
+ANIME_COMMAND = get_command("id")["ANIME_COMMAND"]
 
 RESULTS_PER_PAGE = 4
 
@@ -50,11 +50,11 @@ async def scan_movie_folder(_, message: Message):
         else (message.reply_to_message.text if message.reply_to_message else None)
     )
     if not query:
-        return await message.reply_text("🎬 𝗜𝗻𝗳𝗼𝗿𝗺𝗲 𝗼 𝗳𝗶𝗹𝗺𝗲 𝗾𝘂𝗲 𝗱𝗲𝘀𝗲𝗷𝗮 𝗯𝘂𝘀𝗰𝗮𝗿.")
+        return await message.reply_text("🎬 Masukkan film yang ingin dicari.")
 
     result = await Platform.animezey.search_movie(query)
     if not result:
-        return await message.reply_text("<b>No results found.</b>")
+        return await message.reply_text("<b>Tidak ada hasil ditemukan.</b>")
 
     next_page_token = result.get('nextPageToken') or None
     cur_page_index = result.get('curPageIndex') or 0
@@ -65,7 +65,7 @@ async def scan_movie_folder(_, message: Message):
     ]
 
     if not video_files:
-        return await message.reply_text("<b>No video files found.</b>")
+        return await message.reply_text("<b>Tidak ada video ditemukan.</b>")
 
     context_manager = ContextManager(message.from_user.id)
     context_manager.update_context(query=query, page_token=next_page_token, page_index=cur_page_index,
@@ -89,11 +89,11 @@ async def scan_anime_folder(_, message: Message):
         else (message.reply_to_message.text if message.reply_to_message else None)
     )
     if not query:
-        return await message.reply_text("🎬 𝗜𝗻𝗳𝗼𝗿𝗺𝗲 𝗼 𝗾𝘂𝗲 𝗱𝗲𝘀𝗲𝗷𝗮 𝗯𝘂𝘀𝗰𝗮𝗿.")
+        return await message.reply_text("🎬 Masukkan film yang ingin dicari.")
 
     result = await Platform.animezey.search_anime(query)
     if not result:
-        return await message.reply_text("<b>No results found.</b>")
+        return await message.reply_text("<b>Tidak ada hasil ditemukan.</b>")
 
     next_page_token = result.get('nextPageToken') or None
     cur_page_index = result.get('curPageIndex') or 0
@@ -104,7 +104,7 @@ async def scan_anime_folder(_, message: Message):
     ]
 
     if not video_files:
-        return await message.reply_text("<b>No video files found.</b>")
+        return await message.reply_text("<b>Tidak ada video ditemukan.</b>")
 
     context_manager = ContextManager(message.from_user.id)
     context_manager.update_context(query=query, page_token=next_page_token, page_index=cur_page_index,
@@ -126,9 +126,9 @@ async def send_results_page(message: Message, user_id: int):
     end = start + RESULTS_PER_PAGE
     files_on_page = files[start:end]
 
-    text = f"🎥 <b>Filmes encontrados: {len(files)}</b> - Página {page_index + 1}/{total_pages}</b>\n\n"
+    text = f"🎥 <b>Film yang ditemukan: {len(files)}</b> - Halaman {page_index + 1}/{total_pages}</b>\n\n"
     for idx, file in enumerate(files_on_page, start=1):
-        name = file.get("name", "<b>Sem título</b>")
+        name = file.get("name", "<b>Tanpa Judul</b>")
         # type = file.get("mimeType", None)
         link = file.get("link", "#")
         text += f"<b>📽️ {idx} - <a href='{Platform.animezey.base_url + link}'>{name}</a></b>\n"
@@ -144,7 +144,7 @@ async def send_results_page(message: Message, user_id: int):
         InlineKeyboardButton("➡️", callback_data="next_page") if page_index < total_pages - 1 else None,
     ]
     button_pairs.append(list(filter(None, navigation_buttons)))
-    button_pairs.append([InlineKeyboardButton("❌ Cancelar", callback_data="alpha_cancel")])
+    button_pairs.append([InlineKeyboardButton("❌ Batal", callback_data="alpha_cancel")])
 
     markup = InlineKeyboardMarkup(button_pairs)
 

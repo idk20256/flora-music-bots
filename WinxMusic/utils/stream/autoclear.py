@@ -26,4 +26,4 @@ def auto_clean(popped):
         for pop in popped:
             _auto_clean(pop)
     else:
-        raise ValueError("Expected popped to be a dict or list.")
+        raise ValueError("Diharapkan muncul menjadi kamus atau daftar.")

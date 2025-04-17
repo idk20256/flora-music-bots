@@ -7,79 +7,79 @@ from pyrogram.enums import MessageEntityType
 from pyrogram.types import Message
 
 MARKDOWN = """
-Leia o texto abaixo com atenção para descobrir como funciona a formatação!
+Bacalah teks di bawah ini dengan saksama untuk mengetahui cara kerja pemformatan!
 
-<u>Preenchimentos suportados:</u>
+<u>Isi yang didukung:</u>
 
-{GROUPNAME} - Nome do grupo
-{NAME} - Nome do usuário
-{ID} - ID do usuário
-{FIRSTNAME} - Primeiro nome do usuário
-{SURNAME} - Se o usuário tem sobrenome, isso mostrará o sobrenome, caso contrário, nada
-{USERNAME} - Nome de usuário do usuário
+{GROUPNAME} - Nama grup
+{NAME} - Nama pengguna
+{ID} - ID Pengguna
+{FIRSTNAME} - Nama depan pengguna
+{SURNAME} - Jika pengguna memiliki nama keluarga, ini akan menampilkan nama keluarga, jika tidak, tidak ada apa pun
+{USERNAME} - Nama pengguna pengguna
 
-{TIME} - Hora atual
-{DATE} - Data atual
-{WEEKDAY} - Dia da semana atual
+{TIME} - Waktu saat ini
+{DATE} - Tanggal saat ini
+{WEEKDAY} - Hari saat ini dalam seminggu
 
-<b><u>NOTA:</u></b> Os preenchimentos só funcionam no módulo de boas-vindas.
+<b><u>CATATAN:</u></b> Isian hanya berfungsi di modul selamat datang.
 
-<u>Formatação suportada:</u>
+<u>Format yang didukung:</u>
 
-<code>**Negrito**</code>: Isso aparecerá como texto em <b>Negrito</b>.
-<code>~~riscado~~</code>: Isso aparecerá como texto <strike>riscado</strike>.
-<code>__itálico__</code>: Isso aparecerá como texto em <i>itálico</i>.
-<code>--sublinhado--</code>: Isso aparecerá como texto <u>sublinhado</u>.
-<code>`palavras de código`</code>: Isso aparecerá como texto <code>código</code>.
-<code>||spoiler||</code>: Isso aparecerá como texto <spoiler>Spoiler</spoiler>.
-<code>[hiperlink](google.com)</code>: Isso criará um <a href='https://www.google.com'>hiperlink</a>.
-<code>> olá</code>: Isso aparecerá como <blockquote>olá</blockquote>.
-<b>Nota:</b> Você pode usar tanto Markdown quanto tags HTML.
-
-
-<u>Formatação de botão:</u>
-
-- > <blockquote>texto ~ [texto do botão, link do botão]</blockquote>
+<code>**bold**</code>: Ini akan muncul sebagai teks <b>Tebal</b>.
+<code>~~strikethrough~~</code>: Ini akan muncul sebagai teks <strike>strikethrough</strike>.
+<code>__italic__</code>: Ini akan muncul sebagai teks <i>miring</i>.
+<code>--underline--</code>: Ini akan muncul sebagai teks <u>bergaris bawah</u>.
+<code>`code`</code>: Ini akan muncul sebagai teks <code>kode</code>.
+<code>||spoiler||</code>: Ini akan muncul sebagai teks <spoiler>Spoiler</spoiler>.
+<code>[hyperlink](google.com)</code>: Ini akan membuat <a href='https://www.google.com'>hyperlink</a>.
+<code>>halo</code>: Ini akan muncul sebagai <blockquote>halo</blockquote>.
+<b>Catatan:</b> Anda dapat menggunakan tag Markdown atau HTML.
 
 
-<u>Exemplo:</u>
+<u>Pemformatan tombol:</u>
 
-<b>Exemplo</b>  
-<blockquote><i>botão com markdown</i> <code>formatação</code> ~ [texto do botão, https://google.com]</blockquote>
+-> <blockquote>teks ~ [teks tombol, tautan tombol]</blockquote>
+
+
+<u>Contoh:</u>
+
+<b>Contoh</b>  
+<blockquote><i>tombol dengan markdown</i> <code>format</code> ~ [teks tombol, https://google.com]</blockquote>
 """
 WELCOMEHELP = """
-/setwelcome - Responda esta mensagem contendo o formato correto para uma mensagem de boas-vindas, verifique o final desta mensagem.
+/setwelcome - Balas pesan ini yang berisi format yang benar untuk pesan selamat datang, periksa akhir pesan ini.
 
-/delwelcome - Apaga a mensagem de boas-vindas.
-/getwelcome - Exibe a mensagem de boas-vindas.
+/delwelcome - Menghapus pesan selamat datang.
+/getwelcome - Menampilkan pesan selamat datang.
 
-<b>CONFIGURAR_BOAS_VINDAS -></b>
+<b>SET SELAMAT DATANG -></b>
 
-<b>Para definir uma foto ou GIF como mensagem de boas-vindas, adicione sua mensagem de boas-vindas como legenda da foto ou GIF. A legenda deve estar no formato abaixo.</b>
+<b>Untuk menetapkan foto atau GIF sebagai pesan selamat datang Anda, tambahkan pesan selamat datang Anda sebagai keterangan foto atau GIF. Judul harus dalam format berikut.</b>
 
-Para mensagem de boas-vindas em texto, basta enviar o texto. Em seguida, responda com o comando.
+Untuk pesan selamat datang dalam bentuk teks, cukup kirimkan teksnya. Lalu tanggapi dengan perintah.
 
-O formato deve ser algo como o seguinte:
+Formatnya harus seperti berikut:
 
-{GROUPNAME} - Nome do grupo
-{NAME} - Primeiro nome + sobrenome do usuário
-{ID} - ID do usuário
-{FIRSTNAME} - Primeiro nome do usuário
-{SURNAME} - Se o usuário tem sobrenome, isso mostrará o sobrenome, caso contrário, nada
-{USERNAME} - Nome de usuário do usuário
+{GROUPNAME} - Nama grup
+{NAME} - Nama depan + nama belakang pengguna
+{ID} - ID Pengguna
+{FIRSTNAME} - Nama depan pengguna
+{SURNAME} - Jika pengguna memiliki nama keluarga, ini akan menampilkan nama keluarga, jika tidak, tidak ada apa pun
+{USERNAME} - Nama pengguna pengguna
 
-{TIME} - Hora atual
-{DATE} - Data atual
-{WEEKDAY} - Dia da semana atual
+{TIME} - Waktu saat ini
+{DATE} - Tanggal saat ini
+{WEEKDAY} - Hari saat ini dalam seminggu
 
-~ #Esse separador (~) deve estar entre o texto e os botões, remova também este comentário.
+~ #Pemisah ini (~) harus berada di antara teks dan tombol, hapus juga komentar ini.
 
-button=[Duck, https://duckduckgo.com]
-button2=[Github, https://github.com]
+tombol=[Bebek, https://duckduckgo.com]
+tombol2=[Github, https://github.com]
 
-<b>NOTAS -></b>
+<b>CATATAN-></b>
 
-Verifique /markdownhelp para saber mais sobre formatações e outras sintaxes.
+Periksa /markdownhelp untuk informasi lebih lanjut tentang pemformatan dan sintaksis lainnya.
 """
 
 
@@ -289,7 +289,7 @@ async def time_converter(message: Message, time_value: str) -> Message | datetim
     currunt_time = datetime.now()
     time_digit = time_value[:-1]
     if not time_digit.isdigit():
-        return await message.reply_text("Tempo especificado incorreto.")
+        return await message.reply_text("Waktu yang ditentukan salah.")
     if check_unit == "m":
         temp_time = currunt_time + timedelta(minutes=int(time_digit))
     elif check_unit == "h":
@@ -297,5 +297,5 @@ async def time_converter(message: Message, time_value: str) -> Message | datetim
     elif check_unit == "d":
         temp_time = currunt_time + timedelta(days=int(time_digit))
     else:
-        return await message.reply_text("Tempo especificado incorreto.")
+        return await message.reply_text("Waktu yang ditentukan salah.")
     return temp_time

@@ -40,7 +40,7 @@ from strings import command
     & ~BANNED_USERS
 )
 
-@PlayWrapper
+@play_wrapper
 async def play_commnd(
     client,
     message: Message,

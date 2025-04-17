@@ -32,13 +32,13 @@ def admin_rights_check(mystic: callable):
             language = await get_lang(message.chat.id)
             _ = get_string(language)
         except Exception:
-            _ = get_string("pt")
+            _ = get_string("id")
         if message.sender_chat:
             upl = InlineKeyboardMarkup(
                 [
                     [
                         InlineKeyboardButton(
-                            text="Como resolver isso?",
+                            text="Bagaimana cara mengatasinya?",
                             callback_data="AnonymousAdmin",
                         ),
                     ]
@@ -87,14 +87,14 @@ def admin_actual(mystic: callable):
             language = await get_lang(message.chat.id)
             _ = get_string(language)
         except Exception:
-            _ = get_string("pt")
+            _ = get_string("id")
 
         if message.sender_chat:
             upl = InlineKeyboardMarkup(
                 [
                     [
                         InlineKeyboardButton(
-                            text="Como resolver isso?",
+                            text="Bagaimana cara mengatasinya?",
                             callback_data="AnonymousAdmin",
                         ),
                     ]
@@ -131,7 +131,7 @@ def actual_admin_cb(mystic: callable):
             language = await get_lang(callback_query.message.chat.id)
             _ = get_string(language)
         except Exception:
-            _ = get_string("pt")
+            _ = get_string("id")
 
         if not await is_maintenance():
             if callback_query.from_user.id not in SUDOERS:

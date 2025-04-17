@@ -31,7 +31,7 @@ def play_wrapper(command):
                 [
                     [
                         InlineKeyboardButton(
-                            text="How to Fix ?",
+                            text="Cara Memperbaiki ?",
                             callback_data="AnonymousAdmin",
                         ),
                     ]
@@ -46,7 +46,7 @@ def play_wrapper(command):
         if PRIVATE_BOT_MODE == str(True):
             if not await is_served_private_chat(message.chat.id):
                 await message.reply_text(
-                    "**PRIVATE MUSIC BOT**\n\nOnly For Authorized chats from the owner ask my owner to allow your chat first."
+                    "**BOT MUSIK PRIBADI**\n\nHanya untuk obrolan resmi dari pemilik, minta pemilik saya untuk mengizinkan obrolan Anda terlebih dahulu."
                 )
                 return await app.leave_chat(message.chat.id)
         if await is_commanddelete_on(message.chat.id):
@@ -92,7 +92,7 @@ def play_wrapper(command):
             is_call_active = (await app.get_chat(chat_id)).is_call_active
             if not is_call_active:
                 return await message.reply_text(
-                    "**No active video chat found **\n\nPlease make sure you started the voicechat."
+                    "**Tidak ditemukan obrolan video aktif **\n\ntidak Harap pastikan Anda memulai obrolan suara."
                 )
         except Exception:
             pass

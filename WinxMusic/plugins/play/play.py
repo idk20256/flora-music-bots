@@ -7,7 +7,7 @@ from pyrogram.types import InlineKeyboardMarkup, Message
 import config
 from WinxMusic import LOGGER, Platform, app
 from WinxMusic.utils import seconds_to_min, time_to_seconds
-from WinxMusic.utils.database import is_video_allowed
+from WinxMusic.utils.database import is_video_allowed, language_cb
 from WinxMusic.utils.decorators.play import play_wrapper
 from WinxMusic.utils.formatters import formats
 from WinxMusic.utils.inline.play import (
@@ -433,7 +433,7 @@ async def play_commnd(
 
 
 @app.on_callback_query(filters.regex("MusicStream") & ~BANNED_USERS)
-@languageCB
+@language_cb
 async def play_music(client, CallbackQuery, _):
     callback_data = CallbackQuery.data.strip()
     callback_request = callback_data.split(None, 1)[1]
@@ -513,7 +513,7 @@ async def anonymous_check(client, CallbackQuery):
 
 
 @app.on_callback_query(filters.regex("AnonyPlaylists") & ~BANNED_USERS)
-@languageCB
+@language_cb
 async def play_playlists_command(client, CallbackQuery, _):
     callback_data = CallbackQuery.data.strip()
     callback_request = callback_data.split(None, 1)[1]
@@ -600,7 +600,7 @@ async def play_playlists_command(client, CallbackQuery, _):
 
 
 @app.on_callback_query(filters.regex("slider") & ~BANNED_USERS)
-@languageCB
+@language_cb
 async def slider_queries(client, CallbackQuery, _):
     callback_data = CallbackQuery.data.strip()
     callback_request = callback_data.split(None, 1)[1]

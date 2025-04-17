@@ -7,8 +7,9 @@ from pyrogram.types import InlineKeyboardMarkup, Message
 import config
 from WinxMusic import LOGGER, Platform, app
 from WinxMusic.utils import seconds_to_min, time_to_seconds
-from WinxMusic.utils.database import is_video_allowed, language_cb
+from WinxMusic.utils.database import is_video_allowed
 from WinxMusic.utils.decorators.play import play_wrapper
+from WinxMusic.utils.decorators.language import language_cb
 from WinxMusic.utils.formatters import formats
 from WinxMusic.utils.inline.play import (
     livestream_markup,

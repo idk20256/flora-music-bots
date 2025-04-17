@@ -24,12 +24,12 @@ async def on_bot_added(_, message: Message):
                     message.chat.username if message.chat.username else "ᴘʀɪᴠᴀᴛᴇ ᴄʜᴀᴛ"
                 )
                 msg = (
-                    f"🎉 **Bot de música adicionado em um novo grupo #NovoGrupo**\n\n"
-                    f"📋 **Nome do Chat:** {message.chat.title}\n"
-                    f"🆔 **ID do Chat:** {message.chat.id}\n"
-                    f"🔗 **Nome de usuário do Chat:** @{username}\n"
-                    f"👥 **Número de Membros do Chat:** {count}\n"
-                    f"👤 **Adicionado por:** {message.from_user.mention}"
+                    f"🎉 **Bot musik ditambahkan ke grup baru #NewGroup**\n\n"
+                    f"📋 **Nama Obrolan:** {message.chat.title}\n"
+                    f"🆔 **ID Obrolan:** {message.chat.id}\n"
+                    f"🔗 **Nama Pengguna Obrolan:** @{username}\n"
+                    f"👥 **Jumlah Anggota Obrolan:** {count}\n"
+                    f"👤 **Ditambahkan oleh:** {message.from_user.mention}"
                 )
                 await app.send_message(
                     LOG_GROUP_ID,
@@ -38,7 +38,7 @@ async def on_bot_added(_, message: Message):
                         [
                             [
                                 InlineKeyboardButton(
-                                    text=f"Added by: {message.from_user.first_name}",
+                                    text=f"Ditambahkan oleh: {message.from_user.first_name}",
                                     user_id=message.from_user.id,
                                 )
                             ]
@@ -63,19 +63,19 @@ async def on_bot_kicked(_, message: Message):
             remove_by = (
                 message.from_user.mention
                 if message.from_user
-                else "Usuário Desconhecido"
+                else "Pengguna Tidak Dikenal"
             )
             title = message.chat.title
             username = (
-                f"@{message.chat.username}" if message.chat.username else "Chat Privado"
+                f"@{message.chat.username}" if message.chat.username else "Obrolan Pribadi"
             )
             chat_id = message.chat.id
             left = (
-                f"🤖 O bot foi removido do grupo {title} #GrupoRemovido\n"
-                f"📋 **Nome do Chat**: {title}\n"
-                f"🆔 **ID do Chat**: {chat_id}\n"
-                f"🔗 **Nome de Usuário do Chat**: {username}\n"
-                f"👤 **Removido Por**: {remove_by}"
+                f"🤖 O bot telah dihapus dari grup {title} #GroupRemoved\n"
+                f"📋 **Nama Obrolan**: {title}\n"
+                f"🆔 **ID Obrolan**: {chat_id}\n"
+                f"🔗 **Nama Pengguna Obrolan**: {username}\n"
+                f"👤 **Dihapus Oleh**: {remove_by}"
             )
 
             await app.send_message(
@@ -85,7 +85,7 @@ async def on_bot_kicked(_, message: Message):
                     [
                         [
                             InlineKeyboardButton(
-                                text=f"Removido por: {message.from_user.first_name}",
+                                text=f"Dihapus Oleh: {message.from_user.first_name}",
                                 user_id=message.from_user.id,
                             )
                         ]

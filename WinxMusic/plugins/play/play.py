@@ -200,7 +200,7 @@ async def play_commnd(
             spotify = True
             if not config.SPOTIFY_CLIENT_ID and not config.SPOTIFY_CLIENT_SECRET:
                 return await mystic.edit_text(
-                    "This Bot can't play spotify tracks and playlist, please contact my owner and ask him to add Spotify player."
+                    "Bot ini tidak dapat memutar trek dan daftar putar Spotify, silakan hubungi pemilik saya dan minta dia untuk menambahkan pemutar Spotify."
                 )
             if "track" in url:
                 try:

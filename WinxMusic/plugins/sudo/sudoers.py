@@ -14,7 +14,7 @@ from strings import command
 async def useradd(client, message: Message, _):
     if MONGO_DB_URI is None:
         return await message.reply_text(
-            "**Due to privacy issues, You can't manage sudoers when you are on Yukki Database.\n\n Please fill Your MONGO_DB_URI in your vars to use this features**"
+            "**Karena masalah privasi, Anda tidak dapat mengelola sudoers saat Anda berada di Basis Data Yukki.\n\n Harap isi MONGO_DB_URI Anda di vars Anda untuk menggunakan fitur ini**"
         )
     if not message.reply_to_message:
         if len(message.command) != 2:
@@ -30,7 +30,7 @@ async def useradd(client, message: Message, _):
             SUDOERS.add(user.id)
             await message.reply_text(_["sudo_2"].format(user.mention))
         else:
-            await message.reply_text("Something wrong happened")
+            await message.reply_text("Sesuatu yang salah telah terjadi")
         return
     if message.reply_to_message.from_user.id in SUDOERS:
         return await message.reply_text(
@@ -43,7 +43,7 @@ async def useradd(client, message: Message, _):
             _["sudo_2"].format(message.reply_to_message.from_user.mention)
         )
     else:
-        await message.reply_text("Something wrong happened")
+        await message.reply_text("Sesuatu yang salah telah terjadi")
     return
 
 
@@ -52,7 +52,7 @@ async def useradd(client, message: Message, _):
 async def userdel(client, message: Message, _):
     if MONGO_DB_URI is None:
         return await message.reply_text(
-            "**Due to privacy issues, You can't manage sudoers when you are on Yukki Database.\n\n Please fill Your MONGO_DB_URI in your vars to use this features**"
+            "**Karena masalah privasi, Anda tidak dapat mengelola sudoers saat Anda berada di Basis Data Yukki.\n\n Harap isi MONGO_DB_URI Anda di vars Anda untuk menggunakan fitur ini**"
         )
     if not message.reply_to_message:
         if len(message.command) != 2:
@@ -68,7 +68,7 @@ async def userdel(client, message: Message, _):
             SUDOERS.remove(user.id)
             await message.reply_text(_["sudo_4"])
             return
-        await message.reply_text(f"Something wrong happened")
+        await message.reply_text(f"Sesuatu yang salah telah terjadi")
         return
     user_id = message.reply_to_message.from_user.id
     if user_id not in SUDOERS:
@@ -78,7 +78,7 @@ async def userdel(client, message: Message, _):
         SUDOERS.remove(user_id)
         await message.reply_text(_["sudo_4"])
         return
-    await message.reply_text(f"Something wrong happened")
+    await message.reply_text(f"Sesuatu yang salah telah terjadi")
 
 
 @app.on_message(command("SUDOUSERS_COMMAND") & ~BANNED_USERS)

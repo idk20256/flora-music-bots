@@ -8,7 +8,7 @@ from strings import command
 
 @app.on_message(command("SPEEDTEST_COMMAND") & SUDOERS)
 async def speedtest_function(client, message):
-    m = await message.reply_text("🚀 **Iniciando SpeedTest**...")
+    m = await message.reply_text("🚀 **Memulai Tes Kecepatan**...")
 
     def run_speedtest():
         try:
@@ -23,9 +23,9 @@ async def speedtest_function(client, message):
 
     async def update_status():
         stages = [
-            "⏳ Testando **download** ... ⬇️",
-            "⏳ Testando **upload** ... ⬆️",
-            "↻ Finalizando o teste... 📊"
+            "⏳ Pengujian **unduh** ... ⬇️",
+            "⏳ Menguji **unggah** ... ⬆️",
+            "↻ Menyelesaikan tes... 📊"
         ]
 
         for stage in stages:
@@ -47,23 +47,23 @@ async def speedtest_function(client, message):
         update_task.cancel()
 
     if "error" in result:
-        await m.edit(f"⚠️ **Erro durante o teste de velocidade:**\n\n`{result['error']}`")
+        await m.edit(f"⚠️ **Kesalahan selama tes kecepatan:**\n\n`{result['error']}`")
         return
 
     latency = str(result['server']['latency']).replace('.', ',')
     ping = str(result['ping']).replace('.', ',')
 
-    output = f"""**Resultados do SpeedTest** 📊
+    output = f"""**Hasil Tes Kecepatan** 📊
 
-<u>**Cliente:**</u>
+<u>**Pelanggan:**</u>
 🌐 **ISP:** {result['client']['isp']}
-🏳️ **País:** {result['client']['country']}
+🏳️ **Negara:** {result['client']['country']}
 
-<u>**Servidor:**</u>
-🌍 **Nome:** {result['server']['name']}
-🇦🇺 **País:** {result['server']['country']}, {result['server']['cc']}
-💼 **Patrocinador:** {result['server']['sponsor']}
-⚡ **Latência:** {latency} ms  
+<u>**Pelayanan:**</u>
+🌍 **Nama:** {result['server']['name']}
+🇦🇺 **Negara:** {result['server']['country']}, {result['server']['cc']}
+💼 **Sponsor:** {result['server']['sponsor']}
+⚡ **Latensi:** {latency} ms  
 🏓 **Ping:** {ping} ms"""
 
     try:
@@ -74,4 +74,4 @@ async def speedtest_function(client, message):
         )
         await m.delete()
     except Exception as e:
-        await m.edit(f"⚠️ **Erro ao enviar resultados:**\n\n`{str(e)}`")
+        await m.edit(f"⚠️ **Terjadi kesalahan saat mengirim hasil:**\n\n`{str(e)}`")

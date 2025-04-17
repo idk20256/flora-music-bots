@@ -33,9 +33,9 @@ async def stream_command(
             await Winx.stream_call(url)
         except NoActiveGroupCall:
             await mystic.edit_text(
-                "There's an issue with the bot. please report it to my Owner and ask them to check logger group"
+                "Ada masalah dengan bot. tolong laporkan ke Pemilik saya dan minta mereka untuk memeriksa grup logger"
             )
-            text = "Please Turn on voice chat.. Bot is unable to stream urls.."
+            text = "Harap Aktifkan obrolan suara.. Bot tidak dapat mengalirkan url.."
             return await app.send_message(config.LOG_GROUP_ID, text)
         except Exception as e:
             return await mystic.edit_text(_["general_3"].format(type(e).__name__))

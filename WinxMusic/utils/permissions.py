@@ -58,13 +58,13 @@ async def unauthorised(
     chatID = message.chat.id
     if bot_lacking_permission:
         text = (
-                "I don't have the required permission to perform this action."
-                + f"\n**Permission:** __{permission}__"
+                "Saya tidak memiliki izin yang diperlukan untuk melakukan tindakan ini."
+                + f"\n**Izin:** __{permission}__"
         )
     else:
         text = (
-                "You don't have the required permission to perform this action."
-                + f"\n**Permission:** __{permission}__"
+                "Kamu tidak memiliki izin yang diperlukan untuk melakukan tindakan ini."
+                + f"\n**Izin:** __{permission}__"
         )
     try:
         await message.reply_text(text)

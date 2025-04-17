@@ -36,24 +36,24 @@ async def inline_query_handler(client, query):
                 [
                     [
                         InlineKeyboardButton(
-                            text="🎥 Assistir no YouTube",
+                            text="🎥 Tonton di YouTube",
                             url=link,
                         )
                     ],
                 ]
             )
             searched_text = f"""
-❇️**Título:** [{title}]({link})
+❇️**Judul:** [{title}]({link})
 
-⏳**Duração:** {duration} Minutos
-👀**Visualizações:** `{views}`
-⏰**Publicado em:** {published}
-🎥**Nome do Canal:** {channel}
-📎**Link do Canal:** [Visite aqui]({channellink})
+⏳**Durasi:** {duration} Menit
+👀**Tampilan:** `{views}`
+⏰**Diterbitkan pada:** {published}
+🎥**Nama Saluran:** {channel}
+📎**Link Channel:** [Kunjungi di sini]({channellink})
 
-__Responda com /play nesta mensagem pesquisada para reproduzir no chat de voz.__
+__Balas dengan /play pada pesan yang dicari ini untuk memutarnya dalam obrolan suara.__
 
-⚡️ **Busca inline por {app.mention}**"""
+⚡️ **Pencarian sebaris untuk {app.mention}**"""
             answers.append(
                 InlineQueryResultPhoto(
                     photo_url=thumbnail,

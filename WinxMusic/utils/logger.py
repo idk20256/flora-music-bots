@@ -13,15 +13,15 @@ async def play_logs(message: Message, streamtype: str):
             chatusername = "🔒 Grup Pribadi"
 
         logger_text = f"""
-🎵 **Catatan Reproduksi - {app.mention}** 🎵
+🎵 **Catatan Player - {app.mention}** 🎵
 
 📌 **ID Obrolan:** `{message.chat.id}`
 🏷️ **Nama Obrolan:** {message.chat.title}
-🔗 **Nama Pengguna Obrolan:** {chatusername}
+🔗 **Username Grup:** {chatusername}
 
 👤 **ID Pengguna:** `{message.from_user.id}`
 📛 **Nama:** {message.from_user.mention}
-📱 **Nama pengguna:** @{message.from_user.username}
+📱 **username:** @{message.from_user.username}
 
 🔍 **Permintaan:** {message.text.split(None, 1)[1]}
 🎧 **Jenis Aliran:** {streamtype}"""

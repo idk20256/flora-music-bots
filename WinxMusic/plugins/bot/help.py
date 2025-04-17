@@ -123,7 +123,7 @@ async def format_helper_text(lng, helper_key: str, text: str) -> str:
 
 async def paginate_modules(page_n, chat_id: int, close: bool = False):
     language = await get_lang(chat_id)
-    helpers_dict = helpers.get(language, helpers.get("pt", {}))
+    helpers_dict = helpers.get(language, helpers.get("id", {}))
 
     helper_buttons = [
         EqInlineKeyboardButton(
@@ -242,11 +242,11 @@ async def help_button(client, query):
     try:
         language = await get_lang(query.message.chat.id)
         _ = get_string(language)
-        helpers_dict = helpers.get(language, helpers.get("pt"))
+        helpers_dict = helpers.get(language, helpers.get("id"))
 
     except Exception:
-        _ = get_string("pt")
-        helpers_dict = helpers.get("pt", {})
+        _ = get_string("id")
+        helpers_dict = helpers.get("id", {})
 
     top_text = _["help_1"]
 
@@ -255,17 +255,17 @@ async def help_button(client, query):
         prev_page_num = int(mod_match.group(2))
         close = bool(int(mod_match.group(3)))
         text = (
-                f"<b><u>Here is the help for {HELPABLE[module].__MODULE__}:</u></b>\n"
+                f"<b><u>Berikut adalah bantuan untuk {HELPABLE[module].__MODULE__}:</u></b>\n"
                 + HELPABLE[module].__HELP__
         )
         key = InlineKeyboardMarkup(
             [
                 [
                     InlineKeyboardButton(
-                        text="↪️ Back",
+                        text="↪️ kembali",
                         callback_data=f"help_prev({prev_page_num},{int(close)})",
                     ),
-                    InlineKeyboardButton(text="🔄 Close", callback_data="close"),
+                    InlineKeyboardButton(text="🔄 tutup", callback_data="close"),
                 ],
             ]
         )
@@ -304,9 +304,9 @@ async def help_button(client, query):
             [
                 [
                     InlineKeyboardButton(
-                        text="↪️ Back", callback_data=f"help_prev({page_n},{int(close)})"
+                        text="↪️ kembali", callback_data=f"help_prev({page_n},{int(close)})"
                     ),
-                    InlineKeyboardButton(text="🔄 Close", callback_data="close"),
+                    InlineKeyboardButton(text="🔄 tutup", callback_data="close"),
                 ]
             ]
         )

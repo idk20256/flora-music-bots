@@ -22,63 +22,63 @@ from config import BANNED_USERS
 from strings import command
 
 TEXT = f"""
-🔒 **Privacy Policy for {app.mention} !**
+🔒 **Kebijakan Privasi untuk {app.mention} !**
 
-Your privacy is important to us. To learn more about how we collect, use, and protect your data, please review our Privacy Policy here: [Privacy Policy](https://github.com/gabrielmaialva33/flora-music-bot/blob/master/PRIVACY.md).
+Privasi Anda penting bagi kami. Untuk mempelajari lebih lanjut tentang cara kami mengumpulkan, menggunakan, dan melindungi data Anda, silakan tinjau Kebijakan Privasi kami di sini: [Kebijakan Privasi](https://github.com/gabrielmaialva33/flora-music-bot/blob/master/PRIVACY.md).
 
-If you have any questions or concerns, feel free to reach out to our [Support Team]({config.SUPPORT_GROUP}).
+Jika Anda memiliki pertanyaan atau masalah, jangan ragu untuk menghubungi [Tim Dukungan kami]({config.SUPPORT_GROUP}).
 """
 
 PRIVACY_SECTIONS = {
     "collect": """
-**What Information We Collect**
+**Informasi Apa yang Kami Kumpulkan**
 
-• Basic Telegram user data (ID, username)
-• Chat/Group IDs where the bot is used
-• Command usage and interactions
-• Playlists and music preferences
-• Voice chat participation data
-• User settings and configurations
+• Data dasar pengguna Telegram (ID, nama pengguna)
+• ID Obrolan/Grup tempat bot digunakan
+• Penggunaan dan interaksi perintah
+• Daftar putar dan preferensi musik
+• Data partisipasi obrolan suara
+• Pengaturan dan konfigurasi pengguna
 """,
     "why": """
-**Why We Collect It**
+**Mengapa Kami Mengumpulkannya**
 
-• To provide music streaming services
-• To maintain user playlists
-• To process voice chat requests
-• To manage user permissions
-• To improve bot features
-• To prevent abuse and spam
+• Untuk menyediakan layanan streaming musik
+• Untuk memelihara daftar putar pengguna
+• Untuk memproses permintaan obrolan suara
+• Untuk mengelola izin pengguna
+• Untuk meningkatkan fitur bot
+• Untuk mencegah penyalahgunaan dan spam
 """,
     "do": """
-**What We Do**
+**Apa yang Kami Lakukan**
 
-• Store data securely in encrypted databases
-• Process music requests and streams
-• Maintain user preferences
-• Monitor for proper functionality
-• Delete temporary files after use
-• Implement security measures
+• Menyimpan data dengan aman dalam database terenkripsi
+• Memproses permintaan dan aliran musik
+• Mempertahankan preferensi pengguna
+• Memantau fungsionalitas yang tepat
+• Hapus file sementara setelah digunakan
+• Menerapkan langkah-langkah keamanan
 """,
     "donot": """
-**What We Don't Do**
+**Apa yang Tidak Kami Lakukan**
 
-• Share your data with third parties
-• Store unnecessary personal information
-• Keep data longer than needed
-• Use data for marketing
-• Track users across platforms
-• Sell any user information
+• Bagikan data Anda dengan pihak ketiga
+• Menyimpan informasi pribadi yang tidak diperlukan
+• Menyimpan data lebih lama dari yang dibutuhkan
+• Gunakan data untuk pemasaran
+• Melacak pengguna di seluruh platform
+• Menjual informasi pengguna apa pun
 """,
     "rights": """
-**Your Rights**
+**Hak Anda**
 
-• Access your stored data
-• Request data deletion
-• Modify your settings
-• Opt-out of data collection
-• Report privacy concerns
-• Contact support for help
+• Mengakses data Anda yang tersimpan
+• Minta penghapusan data
+• Ubah pengaturan Anda
+• Memilih tidak ikut serta dalam pengumpulan data
+• Melaporkan masalah privasi
+• Hubungi dukungan untuk bantuan
 """,
 }
 

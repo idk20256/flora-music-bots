@@ -294,16 +294,16 @@ class Call:
                 )
             except Exception as e:
                 raise AssistantErr(
-                    "**No Active Voice Chat Found**\n\nPlease make sure group's voice chat is enabled. If already enabled, please end it and start fresh voice chat again and if the problem continues, try /restart"
+                    "**Tidak Ditemukan Obrolan Suara Aktif**\n\nPastikan obrolan suara grup diaktifkan. Jika sudah diaktifkan, silakan akhiri dan mulai obrolan suara baru lagi dan jika masalah berlanjut, coba /restart"
                 )
 
         except NoActiveGroupCall:
             raise AssistantErr(
-                "**No Active Voice Chat Found**\n\nPlease make sure group's voice chat is enabled. If already enabled, please end it and start fresh voice chat again and if the problem continues, try /restart"
+                "**Tidak Ditemukan Obrolan Suara Aktif**\n\nPastikan obrolan suara grup diaktifkan. Jika sudah diaktifkan, silakan akhiri dan mulai obrolan suara baru lagi dan jika masalah berlanjut, coba /restart"
             )
         except TelegramServerError:
             raise AssistantErr(
-                "**TELEGRAM SERVER ERROR**\n\nPlease restart Your voicechat."
+                "**SERVER TELEGRAM ERROR**\n\nSilahkan restart obrolan suaranya."
             )
         await add_active_chat(chat_id)
         await music_on(chat_id)

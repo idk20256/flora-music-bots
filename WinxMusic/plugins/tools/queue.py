@@ -84,16 +84,16 @@ async def ping_com(_client: Client, message: Message, _):
         else:
             IMAGE = get_image(videoid)
     send = (
-        "**⌛️ Duração:** Duração desconhecida\n\nClique no botão abaixo para ver a lista completa na fila"
+        "**⌛️ Durasi:** Durasi tidak diketahui\n\nKlik tombol di bawah untuk melihat daftar antrian lengkap"
         if DUR == "Unknown"
-        else "\nClique no botão abaixo para ver a lista completa na fila."
+        else "\nKlik tombol di bawah ini untuk melihat daftar lengkap dalam antrian."
     )
     cap = f"""**{app.mention} Player**
 
-🎥**Tocando agora:** {title}
+🎥**Sedang diputar:** {title}
 
-🔗**Tipo de Transmissão:** {type}
-🙍‍♂️**Reproduzido por:** {user}
+🔗**Jenis Transmisi:** {type}
+🙍‍♂️**Direkues oleh:** {user}
 {send}"""
     upl = (
         queue_markup(_, DUR, "c" if cplay else "g", videoid)
@@ -176,12 +176,12 @@ async def queued_tracks(_client: Client, callback_query: CallbackQuery, _):
     for x in got:
         j += 1
         if j == 1:
-            msg += f'Tocando agora:\n\n🏷Título: {x["title"]}\nDuração: {x["dur"]}\nPor: {x["by"]}\n\n'
+            msg += f'Sedang Diputar:\n\n🏷Judul: {x["title"]}\nDurasi: {x["dur"]}\nOleh: {x["by"]}\n\n'
         elif j == 2:
-            msg += f'Na fila:\n\n🏷Título: {x["title"]}\nDuração: {x["dur"]}\nPor: {x["by"]}\n\n'
+            msg += f'Antrian:\n\n🏷Judul: {x["title"]}\nDurasi: {x["dur"]}\nOleh: {x["by"]}\n\n'
         else:
-            msg += f'🏷Título: {x["title"]}\nDuração: {x["dur"]}\nPor: {x["by"]}\n\n'
-    if "Na fila" in msg:
+            msg += f'🏷Judul: {x["title"]}\nDurasi: {x["dur"]}\nOleh: {x["by"]}\n\n'
+    if "Dalam antrian" in msg:
         if len(msg) < 700:
             await asyncio.sleep(1)
             return await callback_query.edit_message_text(msg, reply_markup=buttons)
@@ -247,16 +247,16 @@ async def queue_back(_client: Client, callback_query: CallbackQuery, _):
         else:
             image = get_image(videoid)
     send = (
-        "**⌛️ Duração:** Duração desconhecida\n\nClique no botão abaixo para ver a lista completa na fila"
+        "**⌛️ Durasi:** Durasi tidak diketahui\n\nKlik tombol di bawah untuk melihat daftar antrian lengkap"
         if DUR == "Unknown"
-        else "\nClique no botão abaixo para ver a lista completa na fila."
+        else "\nKlik tombol di bawah ini untuk melihat daftar lengkap dalam antrian."
     )
     cap = f"""**{app.mention} Player**
 
-🎥**Tocando agora:** {title}
+🎥**Sedang diputar:** {title}
 
-🔗**Tipo de Transmissão:** {type}
-🙍‍♂️**Reproduzido por:** {user}
+🔗**Jenis Transmisi:** {type}
+🙍‍♂️**Direproduksi oleh:** {user}
 {send}"""
     upl = (
         queue_markup(_, DUR, cplay, videoid)

@@ -94,7 +94,7 @@ async def markup_timer():
                 language = await get_lang(chat_id)
                 _ = get_string(language)
             except Exception:
-                _ = get_string("pt")
+                _ = get_string("id")
 
             is_muted = False
             try:

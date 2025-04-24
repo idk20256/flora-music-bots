@@ -52,6 +52,9 @@ async def tag_all_users(_, message):
         # Format URL agar terlihat lebih menonjol
         text = text.replace(url, f"[Klik Disini]({url})")
 
+    # Escape karakter khusus untuk MarkdownV2
+    text = text.replace("_", "\\_").replace("*", "\\*").replace("[", "\\[").replace("]", "\\]").replace("(", "\\(").replace(")", "\\)").replace("~", "\\~").replace("`", "\\`").replace(">", "\\>").replace("#", "\\#").replace("+", "\\+").replace("-", "\\-").replace("=", "\\=").replace("|", "\\|").replace("{", "\\{").replace("}", "\\}").replace(".", "\\.").replace("!", "\\!")
+
     usernum = 0
     usertxt = ""
     SPAM_CHATS.append(message.chat.id)
@@ -75,14 +78,14 @@ async def tag_all_users(_, message):
                     await replied.reply_text(
                         f"{text}\n\n{usertxt}",
                         disable_web_page_preview=True,
-                        parse_mode="Markdown",
+                        parse_mode="MarkdownV2",
                     )
                 else:
                     await app.send_message(
                         message.chat.id,
                         f"{text}\n\n{usertxt}",
                         disable_web_page_preview=True,
-                        parse_mode="Markdown",
+                        parse_mode="MarkdownV2",
                     )
                 await asyncio.sleep(1)
                 usernum = 0
@@ -93,14 +96,14 @@ async def tag_all_users(_, message):
                 await replied.reply_text(
                     f"{text}\n\n{usertxt}",
                     disable_web_page_preview=True,
-                    parse_mode="Markdown",
+                    parse_mode="MarkdownV2",
                 )
             else:
                 await app.send_message(
                     message.chat.id,
                     f"{text}\n\n{usertxt}",
                     disable_web_page_preview=True,
-                    parse_mode="Markdown",
+                    parse_mode="MarkdownV2",
                 )
     except FloodWait as e:
         await asyncio.sleep(e.value)

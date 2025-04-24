@@ -1,30 +1,30 @@
 import asyncio
+import random
+import re
 from pyrogram import filters
 from pyrogram.enums import ChatMembersFilter
-
 from pyrogram.errors import FloodWait
-
 from WinxMusic import app
 
+# Daftar emoji standar
+EMOJI_LIST = ["😀", "🎉", "🔥", "🌟", "💥", "✨", "❤️", "🎵", "🌈", "🍀", "🎈", "🌼", "☀️"]
+
+# Daftar emoji premium
+PREMIUM_EMOJI_LIST = ["✨🔥", "🌟🌈", "💎🎉", "🎵🎶", "🔮❤️"]
 
 SPAM_CHATS = []
 
+# Regex untuk mendeteksi URL
+URL_REGEX = r"(https?://[^\s]+)"
 
 async def is_admin(chat_id, user_id):
     admin_ids = [
         admin.user.id
-        async for admin in app.get_chat_members(
-            chat_id, filter=ChatMembersFilter.ADMINISTRATORS
-        )
+        async for admin in app.get_chat_members(chat_id, filter=ChatMembersFilter.ADMINISTRATORS)
     ]
-    if user_id in admin_ids:
-        return True
-    return False
+    return user_id in admin_ids
 
-
-@app.on_message(
-    filters.command(["all", "allmention", "mentionall", "tagall"], prefixes=["/", "@"])
-)
+@app.on_message(filters.command(["all", "allmention", "mentionall", "tagall"], prefixes=["/", "@"]))
 async def tag_all_users(_, message):
     admin = await is_admin(message.chat.id, message.from_user.id)
     if not admin:
@@ -34,225 +34,84 @@ async def tag_all_users(_, message):
         return await message.reply_text(
             "<blockquote><b>Tag all sedang berjalan der, ketik /cancel untuk membatalkan der</b></blockquote>"
         )
+    
     replied = message.reply_to_message
     if len(message.command) < 2 and not replied:
         await message.reply_text(
             "<blockquote><b>Kasih teks nya der\n/tagall Hi Nikol ganteng</b></blockquote>"
         )
         return
-    if replied:
-        usernum = 0
-        usertxt = ""
-        try:
-            SPAM_CHATS.append(message.chat.id)
-            async for m in app.get_chat_members(message.chat.id):
-                if message.chat.id not in SPAM_CHATS:
-                    break
-                if m.user.is_deleted or m.user.is_bot:
-                    continue
-                usernum += 1
-                usertxt += f"\n<blockquote><b> [{m.user.first_name}](tg://user?id={m.user.id})  </b></blockquote>"
-                if usernum == 7:
-                    await replied.reply_text(
-                        usertxt,
-                        disable_web_page_preview=True,
-                    )
-                    await asyncio.sleep(1)
-                    usernum = 0
-                    usertxt = ""
 
-            if usernum != 0:
-                await replied.reply_text(
-                    usertxt,
-                    disable_web_page_preview=True,
-                )
-        except FloodWait as e:
-            await asyncio.sleep(e.value)
-        try:
-            SPAM_CHATS.remove(message.chat.id)
-        except Exception:
-            pass
-    else:
-        try:
-            usernum = 0
-            usertxt = ""
-            text = message.text.split(None, 1)[1]
-            SPAM_CHATS.append(message.chat.id)
-            async for m in app.get_chat_members(message.chat.id):
-                if message.chat.id not in SPAM_CHATS:
-                    break
-                if m.user.is_deleted or m.user.is_bot:
-                    continue
-                usernum += 1
-                usertxt += f"[{m.user.first_name}](tg://user?id={m.user.id})  "
-                if usernum == 7:
+    # Ambil teks dari perintah
+    text = message.text.split(None, 1)[1] if len(message.command) > 1 else ""
+    
+    # Deteksi URL dalam teks
+    url_match = re.search(URL_REGEX, text)
+    if url_match:
+        url = url_match.group(0)
+        # Format URL agar terlihat lebih menonjol
+        text = text.replace(url, f"[Klik Disini]({url})")
+
+    usernum = 0
+    usertxt = ""
+    SPAM_CHATS.append(message.chat.id)
+    try:
+        async for m in app.get_chat_members(message.chat.id):
+            if message.chat.id not in SPAM_CHATS:
+                break
+            if m.user.is_deleted or m.user.is_bot:
+                continue
+
+            # Gunakan emoji premium jika user memiliki Telegram Premium
+            if m.user.is_premium:
+                random_emoji = random.choice(PREMIUM_EMOJI_LIST)
+            else:
+                random_emoji = random.choice(EMOJI_LIST)
+
+            usernum += 1
+            usertxt += f"{random_emoji} "
+            if usernum == 7:
+                if replied:
+                    await replied.reply_text(
+                        f"{text}\n\n{usertxt}",
+                        disable_web_page_preview=True,
+                        parse_mode="Markdown",
+                    )
+                else:
                     await app.send_message(
                         message.chat.id,
-                        f"\n{text}\n{usertxt}",
+                        f"{text}\n\n{usertxt}",
                         disable_web_page_preview=True,
+                        parse_mode="Markdown",
                     )
-                    await asyncio.sleep(2)
-                    usernum = 0
-                    usertxt = ""
-            if usernum != 0:
+                await asyncio.sleep(1)
+                usernum = 0
+                usertxt = ""
+
+        if usernum != 0:
+            if replied:
+                await replied.reply_text(
+                    f"{text}\n\n{usertxt}",
+                    disable_web_page_preview=True,
+                    parse_mode="Markdown",
+                )
+            else:
                 await app.send_message(
                     message.chat.id,
                     f"{text}\n\n{usertxt}",
                     disable_web_page_preview=True,
+                    parse_mode="Markdown",
                 )
-        except FloodWait as e:
-            await asyncio.sleep(e.value)
+    except FloodWait as e:
+        await asyncio.sleep(e.value)
+    finally:
         try:
             SPAM_CHATS.remove(message.chat.id)
         except Exception:
             pass
-
-
-async def tag_all_admins(_, message):
-    if message.chat.id in SPAM_CHATS:
-        return await message.reply_text(
-            "<blockquote><b>Tag all sedang berjalan der\nKetik /cancel untuk membatalkan der</b></blockquote>"
-        )
-    replied = message.reply_to_message
-    if len(message.command) < 2 and not replied:
-        await message.reply_text(
-            "<blockquote><b>Kasih teks nya der\n/admins min lapor min</b></blockquote>"
-        )
-        return
-    if replied:
-        usernum = 0
-        usertxt = ""
-        try:
-            SPAM_CHATS.append(message.chat.id)
-            async for m in app.get_chat_members(
-                message.chat.id, filter=ChatMembersFilter.ADMINISTRATORS
-            ):
-                if message.chat.id not in SPAM_CHATS:
-                    break
-                if m.user.is_deleted or m.user.is_bot:
-                    continue
-                usernum += 1
-                usertxt += f"<blockquote><b>\n[{m.user.first_name}](tg://user?id={m.user.id})  </b></blockquote>"
-                if usernum == 7:
-                    await replied.reply_text(
-                        usertxt,
-                        disable_web_page_preview=True,
-                    )
-                    await asyncio.sleep(1)
-                    usernum = 0
-                    usertxt = ""
-            if usernum != 0:
-                await replied.reply_text(
-                    usertxt,
-                    disable_web_page_preview=True,
-                )
-        except FloodWait as e:
-            await asyncio.sleep(e.value)
-        try:
-            SPAM_CHATS.remove(message.chat.id)
-        except Exception:
-            pass
-    else:
-        usernum = 0
-        usertxt = ""
-        try:
-            text = message.text.split(None, 1)[1]
-            SPAM_CHATS.append(message.chat.id)
-            async for m in app.get_chat_members(
-                message.chat.id, filter=ChatMembersFilter.ADMINISTRATORS
-            ):
-                if message.chat.id not in SPAM_CHATS:
-                    break
-                if m.user.is_deleted or m.user.is_bot:
-                    continue
-                usernum += 1
-                usertxt += f"<blockquote><b>\n[{m.user.first_name}](tg://user?id={m.user.id})  </b></blockquote>"
-                if usernum == 7:
-                    await app.send_message(
-                        message.chat.id,
-                        f"\n<blockquote><b>{text}\n{usertxt}</b></blockquote>",
-                        disable_web_page_preview=True,
-                    )
-                    await asyncio.sleep(2)
-                    usernum = 0
-                    usertxt = ""
-            if usernum != 0:
-                await app.send_message(
-                    message.chat.id,
-                    f"<blockquote><b>\n{text}\n\n{usertxt}</b></blockquote>",
-                    disable_web_page_preview=True,
-                )
-        except FloodWait as e:
-            await asyncio.sleep(e.value)
-        try:
-            SPAM_CHATS.remove(message.chat.id)
-        except Exception:
-            pass
-
 
 @app.on_message(
-    filters.command(["admin", "admins", "report"], prefixes=["/"]) & filters.group
-)
-async def admintag_with_reporting(client, message):
-    if not message.from_user:
-        return
-    chat_id = message.chat.id
-    from_user_id = message.from_user.id
-    admins = [
-        admin.user.id
-        async for admin in client.get_chat_members(
-            chat_id, filter=ChatMembersFilter.ADMINISTRATORS
-        )
-    ]
-    if message.command[0] == "report":
-        if from_user_id in admins:
-            return await message.reply_text(
-                "<blockquote><b>Lu itu admin der ngapain report\nTindak aja langsung der</b></blockquote>"
-            )
-
-    if from_user_id in admins:
-        return await tag_all_admins(client, message)
-
-    if len(message.text.split()) <= 1 and not message.reply_to_message:
-        return await message.reply_text("Reply to a message to report that user.")
-
-    reply = message.reply_to_message or message
-    reply_user_id = reply.from_user.id if reply.from_user else reply.sender_chat.id
-    linked_chat = (await client.get_chat(chat_id)).linked_chat
-    if reply_user_id == app.id:
-        return await message.reply_text("<blockquote><b>Lu report siapa der?, angin?</b></blockquote>")
-    if (
-        reply_user_id in admins
-        or reply_user_id == chat_id
-        or (linked_chat and reply_user_id == linked_chat.id)
-    ):
-        return await message.reply_text(
-            "<blockquote><b>Lu tau yang lu report admin der?</b></blockquote>"
-        )
-
-    user_mention = reply.from_user.mention if reply.from_user else "the user"
-    text = f"<blockquote><b>Bocah ini : {user_mention}\nDilaporkan ke admin</b></blockquote>."
-
-    for admin in admins:
-        admin_member = await client.get_chat_member(chat_id, admin)
-        if not admin_member.user.is_bot and not admin_member.user.is_deleted:
-            text += f"[\u2063](tg://user?id={admin})"
-
-    await reply.reply_text(text)
-
-
-@app.on_message(
-    filters.command(
-        [
-            "stopmention",
-            "cancel",
-            "cancelmention",
-            "offmention",
-            "mentionoff",
-            "cancelall",
-        ],
-        prefixes=["/", "@"],
-    )
+    filters.command(["stopmention", "cancel", "cancelmention", "offmention", "mentionoff", "cancelall"], prefixes=["/", "@"])
 )
 async def cancelcmd(_, message):
     chat_id = message.chat.id
@@ -265,17 +124,13 @@ async def cancelcmd(_, message):
         except Exception:
             pass
         return await message.reply_text("<blockquote><b>Tag all sukses dihentikan der</b></blockquote>")
-
     else:
         await message.reply_text("<blockquote><b>Gak ada proses berjalan der</b></blockquote>")
         return
-
 
 __MODULE__ = "Tagall"
 __HELP__ = """
 <blockquote><b>Admin Only
 /tagall - Tag all semua member grup lu der
-/admins - Tag all semua dmin grup der
-/report - Report member tengil der [khusus member] 
 /cancel - Cancel tag all yang sedang berjalan der</b></blockquote>
 """

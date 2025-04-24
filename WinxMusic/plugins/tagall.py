@@ -32,13 +32,15 @@ async def tag_all_users(_, message):
 
     if message.chat.id in SPAM_CHATS:
         return await message.reply_text(
-            "<blockquote><b>Tag all sedang berjalan der, ketik /cancel untuk membatalkan der</b></blockquote>"
+            "<b>Tag all sedang berjalan der, ketik /cancel untuk membatalkan der</b>",
+            parse_mode="HTML",
         )
     
     replied = message.reply_to_message
     if len(message.command) < 2 and not replied:
         await message.reply_text(
-            "<blockquote><b>Kasih teks nya der\n/tagall Hi Nikol ganteng</b></blockquote>"
+            "<b>Kasih teks nya der\n/tagall Hi Nikol ganteng</b>",
+            parse_mode="HTML",
         )
         return
 
@@ -50,10 +52,7 @@ async def tag_all_users(_, message):
     if url_match:
         url = url_match.group(0)
         # Format URL agar terlihat lebih menonjol
-        text = text.replace(url, f"[Klik Disini]({url})")
-
-    # Escape karakter khusus untuk MarkdownV2
-    text = text.replace("_", "\\_").replace("*", "\\*").replace("[", "\\[").replace("]", "\\]").replace("(", "\\(").replace(")", "\\)").replace("~", "\\~").replace("`", "\\`").replace(">", "\\>").replace("#", "\\#").replace("+", "\\+").replace("-", "\\-").replace("=", "\\=").replace("|", "\\|").replace("{", "\\{").replace("}", "\\}").replace(".", "\\.").replace("!", "\\!")
+        text = text.replace(url, f'<a href="{url}">Klik Disini</a>')
 
     usernum = 0
     usertxt = ""
@@ -76,16 +75,16 @@ async def tag_all_users(_, message):
             if usernum == 7:
                 if replied:
                     await replied.reply_text(
-                        f"{text}\n\n{usertxt}",
+                        f"{text}<br><br>{usertxt}",
                         disable_web_page_preview=True,
-                        parse_mode="MarkdownV2",
+                        parse_mode="HTML",
                     )
                 else:
                     await app.send_message(
                         message.chat.id,
-                        f"{text}\n\n{usertxt}",
+                        f"{text}<br><br>{usertxt}",
                         disable_web_page_preview=True,
-                        parse_mode="MarkdownV2",
+                        parse_mode="HTML",
                     )
                 await asyncio.sleep(1)
                 usernum = 0
@@ -94,16 +93,16 @@ async def tag_all_users(_, message):
         if usernum != 0:
             if replied:
                 await replied.reply_text(
-                    f"{text}\n\n{usertxt}",
+                    f"{text}<br><br>{usertxt}",
                     disable_web_page_preview=True,
-                    parse_mode="MarkdownV2",
+                    parse_mode="HTML",
                 )
             else:
                 await app.send_message(
                     message.chat.id,
-                    f"{text}\n\n{usertxt}",
+                    f"{text}<br><br>{usertxt}",
                     disable_web_page_preview=True,
-                    parse_mode="MarkdownV2",
+                    parse_mode="HTML",
                 )
     except FloodWait as e:
         await asyncio.sleep(e.value)
@@ -126,14 +125,14 @@ async def cancelcmd(_, message):
             SPAM_CHATS.remove(chat_id)
         except Exception:
             pass
-        return await message.reply_text("<blockquote><b>Tag all sukses dihentikan der</b></blockquote>")
+        return await message.reply_text("<b>Tag all sukses dihentikan der</b>", parse_mode="HTML")
     else:
-        await message.reply_text("<blockquote><b>Gak ada proses berjalan der</b></blockquote>")
+        await message.reply_text("<b>Gak ada proses berjalan der</b>", parse_mode="HTML")
         return
 
 __MODULE__ = "Tagall"
 __HELP__ = """
-<blockquote><b>Admin Only
+<b>Admin Only</b>
 /tagall - Tag all semua member grup lu der
-/cancel - Cancel tag all yang sedang berjalan der</b></blockquote>
+/cancel - Cancel tag all yang sedang berjalan der
 """

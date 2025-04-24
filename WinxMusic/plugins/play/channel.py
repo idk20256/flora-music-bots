@@ -10,7 +10,7 @@ from config import BANNED_USERS
 from strings import command, get_command
 
 
-@app.on_message(command("CHANNELPLAY_COMMAND") & filters.group & ~BANNED_USERS)
+@app.on_message(filters.group & ~BANNED_USERS)
 @admin_actual
 async def playmode_(client, message: Message, _):
     try:
@@ -18,15 +18,35 @@ async def playmode_(client, message: Message, _):
         CHANNELPLAY_COMMAND = get_command(lang_code)["CHANNELPLAY_COMMAND"]
     except Exception:
         CHANNELPLAY_COMMAND = get_command("id")["CHANNELPLAY_COMMAND"]
+
+    # Pisahkan logika untuk /play dan /cplay
+    if message.text.startswith("/play"):
+        # Logika untuk /play
+        return await handle_group_play(client, message, _)
+    elif message.text.startswith("/cplay"):
+        # Logika untuk /cplay
+        return await handle_channel_play(client, message, _, CHANNELPLAY_COMMAND)
+    else:
+        # Jika bukan perintah yang dikenali
+        return await message.reply_text("Perintah tidak valid.")
+
+
+async def handle_group_play(client, message: Message, _):
+    # Tambahkan logika untuk pemutaran di grup
+    return await message.reply_text("Memutar musik di grup.")
+
+
+async def handle_channel_play(client, message: Message, _, CHANNELPLAY_COMMAND):
+    # Periksa argumen perintah
     if len(message.command) < 2:
         return await message.reply_text(
             _["cplay_1"].format(message.chat.title, CHANNELPLAY_COMMAND[0])
         )
     query = message.text.split(None, 2)[1].lower().strip()
-    if (str(query)).lower() == "disable":
+    if query == "disable":
         await set_cmode(message.chat.id, None)
         return await message.reply_text("Channel Play Dimatikan")
-    elif str(query) == "linked":
+    elif query == "linked":
         chat = await app.get_chat(message.chat.id)
         if chat.linked_chat:
             chat_id = chat.linked_chat.id

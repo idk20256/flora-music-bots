@@ -1,70 +1,65 @@
-async def handle_channel_play(client, message: Message, _, CHANNELPLAY_COMMAND):
-    # Memastikan perintah memiliki argumen
+from pyrogram import filters
+from pyrogram.enums import ChatMembersFilter, ChatMemberStatus, ChatType
+from pyrogram.errors import ChatAdminRequired
+from pyrogram.types import Message
+
+from WinxMusic import app
+from WinxMusic.utils.database import get_lang, set_cmode
+from WinxMusic.utils.decorators.admins import admin_actual
+from config import BANNED_USERS
+from strings import command, get_command
+
+
+@app.on_message(command("CHANNELPLAY_COMMAND") & filters.group & ~BANNED_USERS)
+@admin_actual
+async def playmode_(client, message: Message, _):
+    try:
+        lang_code = await get_lang(message.chat.id)
+        CHANNELPLAY_COMMAND = get_command(lang_code)["CHANNELPLAY_COMMAND"]
+    except Exception:
+        CHANNELPLAY_COMMAND = get_command("pt")["CHANNELPLAY_COMMAND"]
     if len(message.command) < 2:
         return await message.reply_text(
             _["cplay_1"].format(message.chat.title, CHANNELPLAY_COMMAND[0])
         )
     query = message.text.split(None, 2)[1].lower().strip()
-
-    if query == "disable":
-        # Nonaktifkan mode channel
+    if (str(query)).lower() == "disable":
         await set_cmode(message.chat.id, None)
-        return await message.reply_text("Channel Play Dimatikan")
-
-    elif query == "linked":
-        # Gunakan kanal terkait (linked chat)
+        return await message.reply_text("Channel Play Disabled")
+    elif str(query) == "linked":
         chat = await app.get_chat(message.chat.id)
         if chat.linked_chat:
             chat_id = chat.linked_chat.id
-            # Pastikan bot memiliki izin di kanal terkait
-            try:
-                bot_member = await app.get_chat_member(chat_id, client.me.id)
-                if not bot_member.can_post_messages:
-                    return await message.reply_text("Bot tidak memiliki izin untuk posting di kanal terkait.")
-            except Exception:
-                return await message.reply_text("Gagal memeriksa izin bot di kanal terkait.")
-                
             await set_cmode(message.chat.id, chat_id)
             return await message.reply_text(
                 _["cplay_3"].format(chat.linked_chat.title, chat.linked_chat.id)
             )
         else:
             return await message.reply_text(_["cplay_2"])
-
     else:
-        # Periksa kanal manual berdasarkan input pengguna
         try:
             chat = await app.get_chat(query)
         except Exception:
             return await message.reply_text(_["cplay_4"])
-        
         if chat.type != ChatType.CHANNEL:
             return await message.reply_text(_["cplay_5"])
-
         try:
-            bot_member = await app.get_chat_member(chat.id, client.me.id)
-            if not bot_member.can_post_messages:
-                return await message.reply_text("Bot tidak memiliki izin untuk posting di kanal ini.")
-        except Exception:
-            return await message.reply_text("Gagal memeriksa izin bot di kanal.")
-
-        # Periksa apakah pengguna adalah pemilik kanal
-        try:
-            admins = app.get_chat_members(chat.id, filter=ChatMembersFilter.ADMINISTRATORS)
+            admins = app.get_chat_members(
+                chat.id, filter=ChatMembersFilter.ADMINISTRATORS
+            )
         except Exception:
             return await message.reply_text(_["cplay_4"])
-        
-        creator_id = None
-        async for users in admins:
-            if users.status == ChatMemberStatus.OWNER:
-                creator_id = users.user.id
-                break
+        try:
+            async for users in admins:
+                if users.status == ChatMemberStatus.OWNER:
+                    creatorusername = users.user.username
+                    creatorid = users.user.id
+        except ChatAdminRequired:
+            return await message.reply_text(_["cplay_4"])
 
-        if creator_id != message.from_user.id:
+        if creatorid != message.from_user.id:
             return await message.reply_text(
-                _["cplay_6"].format(chat.title, chat.username or "unknown")
+                _["cplay_6"].format(chat.title, creatorusername)
             )
-
-        # Aktifkan mode channel
         await set_cmode(message.chat.id, chat.id)
         return await message.reply_text(_["cplay_3"].format(chat.title, chat.id))

@@ -11,11 +11,13 @@ from WinxMusic.utils.cache.cache_manager import CacheManager
 from WinxMusic.utils.database import get_banned_users, get_gbanned
 from config import BANNED_USERS
 
+from WinxMusic.utils.error_handler import global_exception_handler, send_error_to_log_group
+import sys
+
 logger = LOGGER("WinxMusic")
 loop = asyncio.get_event_loop()
 
 cache_manager = CacheManager(max_size=100, ttl=3600)
-
 
 async def init():
     if len(config.STRING_SESSIONS) == 0:
@@ -35,6 +37,7 @@ async def init():
     except Exception:
         pass
     await app.start()
+    global_exception_handler(app)
     for mod in app.load_plugins_from("WinxMusic/plugins"):
         if mod and hasattr(mod, "__MODULE__") and mod.__MODULE__:
             if hasattr(mod, "__HELP__") and mod.__HELP__:
@@ -89,5 +92,10 @@ async def init():
 
 
 if __name__ == "__main__":
-    loop.run_until_complete(init())
-    LOGGER("WinxMusic").info("Stopping WinxMusic! GoodBye")
+    try:
+        loop.run_until_complete(init())
+    except Exception:
+        exc_type, exc_value, exc_traceback = sys.exc_info()
+        loop.run_until_complete(send_error_to_log_group(app, exc_type, exc_value, exc_traceback))
+    finally:
+        LOGGER("WinxMusic").info("Stopping WinxMusic! GoodBye")
